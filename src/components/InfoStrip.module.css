@@ -1,0 +1,43 @@
+.infoStrip {
+  background-color: var(--accent-dark);
+  padding: 20px 0;
+  overflow: hidden;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.item {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-transform: uppercase;
+}
+
+.icon {
+  color: var(--accent);
+  font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+  .list {
+    justify-content: center;
+  }
+}

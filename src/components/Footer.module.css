@@ -1,0 +1,96 @@
+.footer {
+  background-color: #000;
+  padding: 60px 20px 20px;
+  color: #fff;
+  border-top: 1px solid #222;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+.branding {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 300px;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+}
+
+.tagline {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.linksColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.colTitle {
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 5px;
+}
+
+.link {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.link:hover {
+  color: var(--accent);
+}
+
+.bottom {
+  border-top: 1px solid #222;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.socials {
+  display: flex;
+  gap: 20px;
+}
+
+.socialLink {
+  color: #fff;
+  cursor: pointer;
+}
+
+.socialLink:hover {
+  color: var(--accent);
+}
+
+@media (max-width: 600px) {
+  .top {
+    flex-direction: column;
+  }
+  .bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}

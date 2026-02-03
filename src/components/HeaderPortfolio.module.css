@@ -1,0 +1,77 @@
+.header {
+  position: relative;
+  width: 100%;
+  padding: 100px 0 50px;
+  background-color: var(--background);
+  color: var(--foreground);
+  overflow: hidden;
+  text-align: center;
+}
+
+.titleContainer {
+  position: relative;
+  display: inline-block;
+  line-height: 0.8;
+}
+
+.bigText {
+  font-size: 15vw;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--foreground);
+  display: block;
+  z-index: 1;
+  position: relative;
+  letter-spacing: -0.05em;
+  text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.topRow {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+.year {
+  font-size: 4vw;
+  font-weight: 800;
+  color: #c9b086; /* Gold/Beige accent from reference */
+  transform: rotate(-10deg);
+  margin-bottom: 20px;
+}
+
+.avatarContainer {
+  position: relative;
+  z-index: 2;
+  margin-top: -8vw; /* Overlap nicely */
+}
+
+.avatar {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  /* Placeholder style */
+  background: linear-gradient(45deg, #333, #555);
+}
+
+.name {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #c9b086;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .bigText {
+    font-size: 20vw;
+  }
+  .avatar {
+    width: 200px;
+    height: 200px;
+  }
+}

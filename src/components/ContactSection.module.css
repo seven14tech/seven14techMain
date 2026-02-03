@@ -1,0 +1,129 @@
+.section {
+  padding: 80px 20px;
+  background-color: var(--accent-dark); /* Dark Green background for contrast */
+  color: #fff;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+
+.text {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin-bottom: 40px;
+  max-width: 500px;
+}
+
+.contactList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 1.1rem;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  background-color: var(--accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary); /* Dark text on bright accent */
+  font-weight: bold;
+}
+
+/* Form */
+.form {
+  background-color: var(--background); /* Black card */
+  padding: 40px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.formTitle {
+  color: var(--foreground); /* White text */
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.input, .textarea {
+  background-color: var(--secondary);
+  border: 1px solid #333;
+  padding: 12px;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.input:focus, .textarea:focus {
+  border-color: var(--accent);
+}
+
+.textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.submitBtn {
+  background-color: var(--accent);
+  color: var(--accent-dark);
+  border: none;
+  padding: 15px;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: transform 0.2s;
+}
+
+.submitBtn:hover {
+  transform: scale(1.02);
+}
+
+@media (max-width: 900px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}

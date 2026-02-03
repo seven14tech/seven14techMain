@@ -1,0 +1,100 @@
+.section {
+  padding: 50px 20px;
+  background-color: var(--background);
+}
+
+.title {
+  font-size: 8rem;
+  font-weight: 800;
+  text-align: center;
+  color: var(--secondary);
+  opacity: 0.3;
+  margin-bottom: -50px;
+  position: relative;
+  z-index: 0;
+  letter-spacing: -0.05em;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.strip {
+  height: 600px;
+  position: relative;
+  transition: transform 0.3s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+  color: #fff;
+}
+
+.strip:hover {
+  transform: translateY(-20px);
+  z-index: 10;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+/* Strip Colors - Adapted for Dark Theme/Black Theme */
+/* Using slightly desaturated or deep colors to look premium on black */
+.strip1 { background-color: #3b5998; } /* Blue */
+.strip2 { background-color: #c9b086; color: #000; } /* Gold/Beige */
+.strip3 { background-color: #a3c139; color: #000; } /* Lime */
+.strip4 { background-color: #e74c3c; } /* Red */
+.strip5 { background-color: #8e44ad; } /* Purple */
+
+.number {
+  font-size: 6rem;
+  font-weight: 800;
+  line-height: 1;
+  opacity: 0.8;
+}
+
+.stripContent {
+  margin-bottom: 20px;
+}
+
+.stripTitle {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.stripDesc {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.mockup {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 40%;
+  background: rgba(255,255,255,0.2);
+  border-radius: 10px;
+  /* Placeholder for phone/app screenshot */
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .strip {
+    height: 300px;
+  }
+  .title {
+    font-size: 4rem;
+    margin-bottom: 20px;
+  }
+}
