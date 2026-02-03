@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Seven14Tech - Premium Digital Agency
 
-## Getting Started
+A high-performance, aesthetically premium portfolio website for **Seven14Tech**, a creative agency specializing in web design, desktop applications, and SEO growth.
 
-First, run the development server:
+![Seven14Tech](public/file.svg)
 
-```bash
+## 🚀 Technical Stack
+
+- **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
+- **Styling**: CSS Modules (Zero-runtime overhead, scoped styles)
+- **Animations**: [GSAP](https://gsap.com/) (GreenSock Animation Platform) + `@gsap/react`
+- **Language**: TypeScript
+- **Font**: Geist Sans & Mono
+
+## ✨ Key Features
+
+### 1. **Premium "Dark Portfolio" Aesthetic**
+- **Theme**: Deep Black (`#0a0a0a`) background with Lime Green (`#a3c139`) and Gold accents.
+- **Visuals**: Clean, minimalist layout with high-contrast typography.
+
+### 2. **Advanced Animations**
+- **Loading Screen**: A cinematic 0-100% counter that fades seamlessly into the homepage.
+- **Hero Section**: "SEVEN" and "14TECH" text slides up with staggered timing.
+- **Content Strips**: Interactive service columns that cascade into view.
+- **Intro Card**: 3D rotation effect on scroll using ScrollTrigger.
+
+### 3. **Search Engine Optimization (SEO)**
+- **Metadata**: Fully optimized `title`, `description`, and `keywords` for all pages.
+- **Open Graph**: Social media preview cards (Twitter/Facebook).
+- **Indexing**: Auto-generated `sitemap.xml` and `robots.txt`.
+
+### 4. **Components**
+- **Sticky Navbar**: Glassmorphism effect with blurred background.
+- **PageHeader**: Reusable, animating headers for inner pages (Services, Contact, About).
+- **Service Strips**: Hover-interactive vertical accordions.
+
+## 🛠️ Getting Started
+
+First, install the dependencies:
+
+\`\`\`bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+\`\`\`
+
+Then, run the development server:
+
+\`\`\`bash
 npm run dev
 # or
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
-```
+\`\`\`
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📂 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+\`\`\`
+src/
+├── app/
+│   ├── about/        # About Us page
+│   ├── contact/      # Contact form page
+│   ├── services/     # Service listings
+│   ├── globals.css   # Global variables & reset
+│   ├── layout.tsx    # Root layout & Metadata
+│   └── page.tsx      # Homepage (Hero, Intro, Strips)
+├── components/
+│   ├── HeaderPortfolio.tsx  # Hero Section
+│   ├── Navbar.tsx           # Sticky Navigation
+│   ├── ContentStrips.tsx    # Services Animation
+│   ├── LoadingScreen.tsx    # 0-100% Loader
+│   └── ...
+└── ...
+\`\`\`
 
-## Learn More
+## 🎨 Customization
 
-To learn more about Next.js, take a look at the following resources:
+- **Colors**: Edit `src/app/globals.css` to change `--accent` or `--background`.
+- **Content**: Update text in individual pages or components (e.g., `HeaderPortfolio.tsx` for the Hero text).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+© 2024 Seven14Tech. All Rights Reserved.
+"# seven14techMain" 
