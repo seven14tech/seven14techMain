@@ -9,9 +9,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function ContentStrips() {
   const containerRef = useRef(null);
-  const stripsRef = useRef([]);
+  const stripsRef = useRef<HTMLDivElement[]>([]);
 
-  const addStripRef = (el) => {
+  const addStripRef = (el: HTMLDivElement | null) => {
     if (el && !stripsRef.current.includes(el)) {
       stripsRef.current.push(el);
     }
