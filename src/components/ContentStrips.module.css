@@ -91,10 +91,25 @@
     grid-template-columns: 1fr;
   }
   .strip {
-    height: 300px;
+    height: auto;
+    min-height: 250px;
+    padding: 30px;
   }
   .title {
     font-size: 4rem;
     margin-bottom: 20px;
+  }
+  .number {
+    font-size: 4rem;
+  }
+  .mockup {
+    width: 60%;
+    height: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 3rem;
   }
 }

@@ -153,3 +153,20 @@
     font-size: 2.2rem;
   }
 }
+
+@media (max-width: 480px) {
+  .section {
+    padding: 60px 0;
+  }
+  .title {
+    font-size: 1.8rem;
+  }
+  .imageGrid {
+    gap: 10px;
+  }
+  .badge {
+    width: 80px;
+    height: 80px;
+    font-size: 0.8rem;
+  }
+}

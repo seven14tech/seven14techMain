@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import styles from "./Hero.module.css";
 
 export default function Hero() {
@@ -28,12 +29,14 @@ export default function Hero() {
         </div>
 
         <div className={styles.imageWrapper}>
-           {/* In a real scenario, use Next.js Image component with imported assets */}
-           <div className={styles.placeholderGrid}>
-              <div className={`${styles.placeholderImg} ${styles.img1}`} style={{background: '#e0e0e0'}}></div>
-              <div className={`${styles.placeholderImg} ${styles.img2}`} style={{background: '#d0d0d0'}}></div>
-              <div className={`${styles.placeholderImg} ${styles.img3}`} style={{background: '#c0c0c0'}}></div>
-           </div>
+           <Image 
+             src="/2BOYS.png" 
+             alt="Team" 
+             fill 
+             className={styles.heroImage}
+             style={{ objectFit: 'cover', borderRadius: '20px' }}
+             priority
+           />
            
            <div className={styles.badge}>
              ★ EST 2024

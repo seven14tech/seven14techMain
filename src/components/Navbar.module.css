@@ -96,5 +96,48 @@
 
   .mobileMenuBtn {
     display: block;
+    z-index: 1002; /* Above overlay */
+    position: relative;
   }
+}
+
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--background);
+  z-index: 1001;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.menuOpen {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.mobileNavLinks {
+  list-style: none;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.mobileNavLink {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--foreground);
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.mobileNavLink:hover {
+  color: var(--accent);
 }
