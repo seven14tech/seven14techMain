@@ -1,107 +1,142 @@
 .footer {
-  background-color: #000;
-  padding: 60px 20px 20px;
-  color: #fff;
-  border-top: 1px solid #222;
+  position: relative;
+  padding: 80px 0 28px;
+  background: linear-gradient(180deg, transparent, rgba(255,255,255,0.02));
+  border-top: 1px solid var(--line);
 }
 
 .container {
+  width: 100%;
   max-width: var(--max-width);
   margin: 0 auto;
+  padding-inline: var(--gutter);
 }
 
 .top {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 40px;
-  margin-bottom: 60px;
+  display: grid;
+  grid-template-columns: 1.2fr 2fr;
+  gap: 60px;
+  padding-bottom: 56px;
 }
 
 .branding {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  max-width: 300px;
+  gap: 18px;
+  max-width: 340px;
 }
 
-.logo {
-  font-size: 1.5rem;
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-weight: 700;
-  letter-spacing: -0.05em;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+  color: var(--fg);
 }
+.mark {
+  display: inline-flex;
+  width: 30px; height: 30px;
+  align-items: center; justify-content: center;
+  color: var(--accent);
+  background: rgba(255,138,61,0.10);
+  border: 1px solid rgba(255,138,61,0.25);
+  border-radius: 9px;
+}
+.brandAccent { color: var(--accent); }
 
 .tagline {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-
-.linksColumn {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.colTitle {
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 5px;
-}
-
-.link {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  transition: color 0.2s;
-}
-
-.link:hover {
-  color: var(--accent);
-}
-
-.bottom {
-  border-top: 1px solid #222;
-  padding-top: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
-  color: var(--text-muted);
-  font-size: 0.8rem;
+  color: var(--fg-muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
 }
 
 .socials {
   display: flex;
-  gap: 20px;
+  gap: 10px;
+  margin-top: 6px;
+}
+.socialBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--line);
+  color: var(--fg-muted);
+  transition: color var(--dur-2) var(--ease), border-color var(--dur-2) var(--ease), background-color var(--dur-2) var(--ease);
+}
+.socialBtn:hover { color: var(--accent); border-color: rgba(255,138,61,0.4); background: rgba(255,138,61,0.06); }
+
+.cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.colTitle {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.link {
+  color: var(--fg);
+  font-size: 0.95rem;
+  transition: color var(--dur-2) var(--ease);
+}
+.link:hover { color: var(--accent); }
+.linkMuted {
+  color: var(--fg-muted);
+  font-size: 0.9rem;
+  transition: color var(--dur-2) var(--ease);
+}
+.linkMuted:hover { color: var(--fg); }
+
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(3rem, 17vw, 14rem);
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+  background: linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.02));
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  text-align: center;
+  user-select: none;
+  margin: 20px 0 20px;
+  pointer-events: none;
 }
 
-.socialLink {
-  color: #fff;
-  cursor: pointer;
+.bottom {
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  color: var(--fg-muted);
+  font-size: 0.82rem;
 }
 
-.socialLink:hover {
-  color: var(--accent);
-}
+.legal { display: flex; gap: 20px; }
 
-@media (max-width: 600px) {
-  .footer {
-    padding: 40px 20px 20px;
-  }
-  .top {
-    flex-direction: column;
-    gap: 30px;
-  }
-  .branding {
-    max-width: 100%;
-  }
-  .bottom {
-    flex-direction: column;
-    text-align: center;
-    gap: 15px;
-  }
-  .socials {
-    justify-content: center;
-  }
+@media (max-width: 880px) {
+  .top { grid-template-columns: 1fr; gap: 40px; }
+  .cols { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+}
+@media (max-width: 520px) {
+  .cols { grid-template-columns: 1fr; }
+  .bottom { flex-direction: column; align-items: flex-start; }
 }

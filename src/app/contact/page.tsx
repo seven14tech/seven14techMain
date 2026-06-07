@@ -5,13 +5,12 @@ import Footer from "@/components/Footer";
 export default function Contact() {
   return (
     <main style={{ minHeight: "100vh" }}>
-      <PageHeader 
-        title="Get in Touch" 
-        subtitle="Ready to start your next project? We'd love to hear from you."
+      <PageHeader
+        eyebrow="Contact"
+        title="Tell us what you're building."
+        subtitle="Drop us a line. We'll respond within one business day with next steps — typically a 30-minute scoping call."
       />
-      <div style={{ paddingTop: '50px' }}>
-        <ContactSection />
-      </div>
+      <ContactSection />
       <Footer />
     </main>
   );

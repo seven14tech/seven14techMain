@@ -1,86 +1,234 @@
 .section {
-  padding: 80px 20px;
-  background-color: var(--background);
-  color: var(--foreground);
+  padding: var(--s-12) 0;
+  position: relative;
 }
 
 .container {
+  width: 100%;
   max-width: var(--max-width);
   margin: 0 auto;
+  padding-inline: var(--gutter);
 }
 
-.header {
-  text-align: center;
-  margin-bottom: 60px;
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 56px;
+  max-width: 720px;
 }
 
 .title {
-  font-size: 3rem;
-  font-weight: 800;
-  margin-bottom: 10px;
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.04;
+  color: var(--fg);
+}
+.lede {
+  font-size: var(--fs-body-lg);
+  color: var(--fg-muted);
+  max-width: 56ch;
 }
 
-.subtitle {
-  color: var(--text-muted);
-  font-size: 1.1rem;
-}
-
-.grid {
+.layout {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 60px;
+  align-items: center;
 }
+
+.stack {
+  position: relative;
+  height: 420px;
+  cursor: grab;
+}
+.stack:active { cursor: grabbing; }
 
 .card {
-  background-color: var(--secondary);
-  padding: 30px;
-  border-radius: 15px;
+  position: absolute;
+  inset: 0;
+  border-radius: var(--r-xl);
+  user-select: none;
+  will-change: transform, opacity;
+  transform-origin: center top;
+}
+
+.cardInner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 38px;
+  background:
+    radial-gradient(500px 280px at 100% 0%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,0.03), transparent 60%),
+    var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: inherit;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.35);
   position: relative;
-  transition: transform 0.3s ease;
+  isolation: isolate;
 }
 
-.card:hover {
-  transform: translateY(-5px);
+.cardInner::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(140deg, color-mix(in srgb, var(--accent) 55%, transparent), transparent 60%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+          mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
 }
 
-.stars {
-  color: #FFD700; /* Gold */
-  margin-bottom: 20px;
-  font-size: 1.2rem;
-}
+.quoteMark { color: var(--accent); opacity: 0.85; }
 
 .quote {
-  font-size: 1rem;
-  line-height: 1.6;
-  opacity: 0.9;
-  margin-bottom: 25px;
-  font-style: italic;
+  font-size: 1.2rem;
+  line-height: 1.45;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+  max-width: 50ch;
 }
+
+.metric {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  align-self: flex-start;
+  padding: 6px 12px;
+  border-radius: var(--r-pill);
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.metricDot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
 
 .client {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 14px;
+  padding-top: 18px;
+  border-top: 1px dashed var(--line);
+  margin-top: auto;
 }
 
 .avatar {
-  width: 50px;
-  height: 50px;
-  background-color: #444;
+  width: 48px; height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.06em;
+  color: #0A0A0A;
+  background: linear-gradient(135deg, var(--accent), var(--gold));
   border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.06);
 }
 
-.info {
+.name { font-weight: 600; font-size: 1rem; color: var(--fg); }
+.role { font-size: 0.86rem; color: var(--fg-muted); margin-top: 2px; }
+
+/* Controls panel */
+.controls {
   display: flex;
   flex-direction: column;
+  gap: 24px;
+  padding: 32px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
 }
 
-.name {
-  font-weight: 700;
-  font-size: 1rem;
+.counter {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-family: var(--font-display);
+  letter-spacing: -0.04em;
+}
+.counterCurrent {
+  font-size: 3.4rem;
+  font-weight: 800;
+  color: var(--fg);
+  line-height: 1;
+}
+.counterTotal {
+  font-size: 1.2rem;
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
 }
 
-.role {
-  font-size: 0.8rem;
-  color: var(--text-muted);
+.progressTrack {
+  width: 100%;
+  height: 2px;
+  background: var(--line);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.progressBar {
+  height: 100%;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, var(--accent), var(--gold));
+}
+
+.dots {
+  display: flex;
+  gap: 8px;
+  padding-top: 4px;
+}
+.dot {
+  width: 36px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--line-strong);
+  border: 0;
+  cursor: pointer;
+  transition: background-color var(--dur-2) var(--ease);
+}
+.dot:hover { background: var(--fg-muted); }
+.dotActive { background: var(--accent); }
+
+.navRow {
+  display: flex;
+  gap: 10px;
+  padding-top: 4px;
+}
+.navBtn {
+  width: 44px; height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--fg);
+  transition: background-color var(--dur-2) var(--ease), border-color var(--dur-2) var(--ease);
+}
+.navBtn:hover { background: rgba(255,255,255,0.08); border-color: var(--line-strong); }
+
+.dragHint {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; gap: 32px; }
+  .stack { height: 460px; }
+  .cardInner { padding: 28px; }
+  .quote { font-size: 1.05rem; }
 }

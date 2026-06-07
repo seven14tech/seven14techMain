@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/Navbar";
+import CustomCursor from "../components/CustomCursor";
+import ScrollProgress from "../components/ScrollProgress";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,15 +25,11 @@ export const metadata: Metadata = {
   authors: [{ name: "Seven14Tech Team" }],
   creator: "Seven14Tech",
   publisher: "Seven14Tech",
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
+  formatDetection: { email: false, address: false, telephone: false },
   openGraph: {
     title: "Seven14Tech | Premium Web & Desktop Development",
     description: "Building digital experiences that matter. Expert web and desktop development services.",
-    url: "https://seven14tech.com", // Replace with actual domain
+    url: "https://seven14tech.com",
     siteName: "Seven14Tech",
     locale: "en_US",
     type: "website",
@@ -42,9 +40,7 @@ export const metadata: Metadata = {
     description: "Premium Web & Desktop Development",
     creator: "@seven14tech",
   },
-  icons: {
-    icon: "/favicon.ico",
-  },
+  icons: { icon: "/favicon.ico" },
 };
 
 export default function RootLayout({
@@ -55,8 +51,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <ScrollProgress />
         <Navbar />
         {children}
+        <CustomCursor />
       </body>
     </html>
   );

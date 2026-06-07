@@ -5,29 +5,33 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
 interface PageHeaderProps {
+  eyebrow?: string;
   title: string;
   subtitle?: string;
 }
 
-export default function PageHeader({ title, subtitle }: PageHeaderProps) {
-  const containerRef = useRef(null);
-  const titleRef = useRef(null);
-  const subRef = useRef(null);
+export default function PageHeader({ eyebrow, title, subtitle }: PageHeaderProps) {
+  const root = useRef<HTMLElement | null>(null);
 
   useGSAP(() => {
-    gsap.to([titleRef.current, subRef.current], {
-      y: 0,
-      opacity: 1,
-      duration: 1,
-      stagger: 0.2,
-      ease: "power3.out"
+    if (!root.current) return;
+    gsap.from(root.current.querySelectorAll("[data-reveal]"), {
+      y: 40, opacity: 0, duration: 0.9, stagger: 0.1, ease: "power3.out",
     });
-  }, { scope: containerRef });
+  }, { scope: root });
 
   return (
-    <div className={styles.header} ref={containerRef}>
-      <h1 className={styles.title} ref={titleRef}>{title}</h1>
-      {subtitle && <p className={styles.subtitle} ref={subRef}>{subtitle}</p>}
-    </div>
+    <section className={styles.header} ref={root}>
+      <div className={styles.gridBg} aria-hidden="true" />
+      <div className={styles.container}>
+        {eyebrow && (
+          <span className="s14-eyebrow" data-reveal>
+            <span className="dot" /> {eyebrow}
+          </span>
+        )}
+        <h1 className={styles.title} data-reveal>{title}</h1>
+        {subtitle && <p className={styles.subtitle} data-reveal>{subtitle}</p>}
+      </div>
+    </section>
   );
 }

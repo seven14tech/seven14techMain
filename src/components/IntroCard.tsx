@@ -7,92 +7,109 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const CAPS = [
+  {
+    title: "Web Engineering",
+    desc: "Next.js, React, TypeScript. Edge-first, fast by default.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 12l9 4 9-4"/><path d="M3 17l9 4 9-4"/>
+      </svg>
+    ),
+  },
+  {
+    title: "Desktop Apps",
+    desc: "Tauri, Rust, Electron. Native feel, tiny footprint.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/>
+      </svg>
+    ),
+  },
+  {
+    title: "Brand & UI Systems",
+    desc: "Identity, design systems, motion, micro-interactions.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/>
+      </svg>
+    ),
+  },
+  {
+    title: "Growth & SEO",
+    desc: "Core Web Vitals, schema, content engines that compound.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M3 17l6-6 4 4 8-9"/><path d="M14 6h7v7"/>
+      </svg>
+    ),
+  },
+];
+
 export default function IntroCard() {
-  const containerRef = useRef(null);
-  const cardRef = useRef(null);
-  const textRef = useRef(null);
-  const listRef = useRef(null);
+  const root = useRef<HTMLElement | null>(null);
 
   useGSAP(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 80%", // Start when top of section hits 80% viewport height
-        toggleActions: "play none none reverse",
-      }
+    if (!root.current) return;
+    gsap.from(root.current.querySelectorAll("[data-reveal]"), {
+      scrollTrigger: { trigger: root.current, start: "top 80%" },
+      y: 40, opacity: 0, duration: 0.8, stagger: 0.08, ease: "power2.out",
     });
-
-    tl.from(cardRef.current, { 
-      x: -100, 
-      opacity: 0, 
-      rotationY: 90, 
-      duration: 1.2, 
-      ease: "power2.out" 
-    })
-    .from(textRef.current, { 
-      y: 50, 
-      opacity: 0, 
-      duration: 0.8 
-    }, "-=0.8")
-    .from(listRef.current, { 
-      y: 30, 
-      opacity: 0, 
-      duration: 0.8 
-    }, "-=0.6");
-
-  }, { scope: containerRef });
+  }, { scope: root });
 
   return (
-    <section className={styles.section} ref={containerRef}>
+    <section className={styles.section} ref={root} id="about">
       <div className={styles.container}>
-        <div className={styles.cardWrapper} ref={cardRef}>
-          <div className={styles.lanyard}></div>
-          <div className={styles.idCard}>
-            <div className={styles.cardPhoto} style={{background: '#333'}}></div>
-            <div className={styles.cardDetails}>
-              <div className={styles.cardName}>Seven14Tech Team</div>
-              <div className={styles.cardTitle}>Web & Desktop Developers</div>
-              <div style={{fontSize: '0.75rem', marginTop: '10px'}}>
-                ID: 714-2024-X
-              </div>
-            </div>
-          </div>
-        </div>
+        <header className={styles.head}>
+          <span className="s14-eyebrow" data-reveal><span className="dot" /> About the studio</span>
+          <h2 className={styles.title} data-reveal>
+            A senior team that ships
+            <br /><span className={styles.muted}>like it&apos;s your in-house crew.</span>
+          </h2>
+          <p className={styles.lede} data-reveal>
+            We&apos;re an independent studio of engineers and designers obsessed with craft,
+            performance and clarity. No agency overhead — just the people doing the work,
+            building things you&apos;d be proud to put your name on.
+          </p>
+        </header>
 
-        <div className={styles.content}>
-          <div ref={textRef}>
-            <h2 className={styles.greeting}>Hi, We're Seven14Tech</h2>
-            <p className={styles.introText}>
-              We are a team of dedicated developers and designers who love solving problems. 
-              We create premium websites and desktop applications that not only look good 
-              but feel effortless to use.
-            </p>
-          </div>
+        <div className={styles.bento}>
+          <article className={`${styles.cell} ${styles.cellLarge}`} data-reveal>
+            <div className={styles.signature}>
+              <span>S</span><span>14</span>
+              <em>est. 2024</em>
+            </div>
+            <div className={styles.cellFoot}>
+              <div className={styles.cellTitle}>Built with intent.</div>
+              <p className={styles.cellText}>
+                Every pixel and every byte earns its place. We work in small, accountable
+                teams paired with the same senior leads from kickoff to launch.
+              </p>
+            </div>
+          </article>
 
-          <div className={styles.gridInfo} ref={listRef}>
-            <div>
-              <h3 className={styles.colTitle}>Services</h3>
-              <ul className={styles.list}>
-                <li className={styles.listItem}>
-                  <span className={styles.itemTitle}>Web Development</span>
-                  <span className={styles.itemDesc}>Next.js, React, Node</span>
-                </li>
-                <li className={styles.listItem}>
-                  <span className={styles.itemTitle}>Desktop Apps</span>
-                  <span className={styles.itemDesc}>Tauri, Rust, Electron</span>
-                </li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 className={styles.colTitle}>Contact</h3>
-              <div className={styles.socials}>
-                <div className={styles.socialIcon}>Li</div>
-                <div className={styles.socialIcon}>X</div>
-                <div className={styles.socialIcon}>Gl</div>
+          {CAPS.map((c) => (
+            <article key={c.title} className={styles.cell} data-reveal>
+              <div className={styles.icon}>{c.icon}</div>
+              <div className={styles.cellFoot}>
+                <div className={styles.cellTitle}>{c.title}</div>
+                <p className={styles.cellText}>{c.desc}</p>
               </div>
+            </article>
+          ))}
+
+          <article className={`${styles.cell} ${styles.cellAccent}`} data-reveal>
+            <div className={styles.bigNumber}>
+              <span>05</span>
+              <em>year avg. <br />team tenure</em>
             </div>
-          </div>
+            <div className={styles.cellFoot}>
+              <div className={styles.cellTitle}>People who&apos;ve been in the trenches.</div>
+              <p className={styles.cellTextDark}>
+                Decades of combined experience across product, infra and design.
+              </p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
