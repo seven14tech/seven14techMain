@@ -2,6 +2,7 @@ import { Hero } from "@/components/sections/Hero";
 import { TrustedMarquee } from "@/components/sections/TrustedMarquee";
 import { EcosystemMap } from "@/components/sections/EcosystemMap";
 import { CoreModules } from "@/components/sections/CoreModules";
+import { Services } from "@/components/sections/Services";
 import { ProductStory } from "@/components/sections/ProductStory";
 import { WhyStats } from "@/components/sections/WhyStats";
 import { Industries } from "@/components/sections/Industries";
@@ -21,6 +22,7 @@ export default function HomePage() {
       <TrustedMarquee />
       <EcosystemMap />
       <CoreModules />
+      <Services />
       <ProductStory />
       <WhyStats />
       <Industries />

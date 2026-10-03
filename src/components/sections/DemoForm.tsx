@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Check, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { industries } from "@/lib/content";
+import { industries, services } from "@/lib/content";
 
 type Status = "idle" | "submitting" | "done";
 
@@ -78,6 +78,16 @@ export function DemoForm() {
           </select>
         </Labeled>
       </div>
+      <Labeled label="Interested in" htmlFor="service" className="mt-4">
+        <select id="service" name="service" className={field} defaultValue="platform">
+          <option value="platform">Seven14 platform (POS, inventory, CRM)</option>
+          {services.map((s) => (
+            <option key={s.id} value={s.id}>
+              {s.name}
+            </option>
+          ))}
+        </select>
+      </Labeled>
       <Labeled label="What would you like to see?" htmlFor="message" className="mt-4">
         <textarea
           id="message"

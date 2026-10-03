@@ -15,6 +15,9 @@ import {
   Bike,
   Building2,
   Network,
+  Layers,
+  Globe,
+  Smartphone,
   type LucideIcon,
 } from "lucide-react";
 
@@ -139,6 +142,66 @@ export const ecosystemNodes = modules.map((m) => ({
   accent: m.accent,
   blurb: m.tagline,
 }));
+
+export type Service = {
+  id: string;
+  name: string;
+  tagline: string;
+  description: string;
+  features: string[];
+  icon: LucideIcon;
+  accent: string;
+};
+
+export const services: Service[] = [
+  {
+    id: "erp",
+    name: "ERP System",
+    tagline: "Run the whole business from one system",
+    description:
+      "A complete ERP that connects sales, inventory, purchasing, HR, accounting and reporting — configured to the way your business actually works.",
+    features: ["Sales & purchase", "Inventory & warehouses", "Accounting & GST", "HR & payroll", "Approvals & workflows", "Multi-branch reporting"],
+    icon: Layers,
+    accent: "var(--color-violet)",
+  },
+  {
+    id: "billing",
+    name: "Billing System",
+    tagline: "GST-ready invoicing in seconds",
+    description:
+      "Fast, compliant billing for counters, service businesses and B2B — invoices, quotations, payments and receivables in one place.",
+    features: ["GST invoices & e-way bills", "Quotations & credit notes", "UPI, card & cash payments", "Recurring billing", "Payment reminders", "Receivables tracking"],
+    icon: Receipt,
+    accent: "var(--color-brand)",
+  },
+  {
+    id: "websites",
+    name: "Website Development",
+    tagline: "Websites that win customers",
+    description:
+      "We design and build fast, SEO-ready websites, e-commerce stores and web portals for businesses of every size.",
+    features: ["Business & landing sites", "E-commerce stores", "Custom web portals", "SEO & performance", "CMS for easy updates", "Hosting & maintenance"],
+    icon: Globe,
+    accent: "var(--color-sky)",
+  },
+  {
+    id: "apps",
+    name: "Mobile App Development",
+    tagline: "Your business, in their pocket",
+    description:
+      "Native-quality Android and iOS apps — customer apps, ordering apps and internal staff tools — built, launched and supported by our team.",
+    features: ["Android & iOS apps", "Ordering & booking apps", "Staff & field apps", "Payments & notifications", "Play Store & App Store launch", "Ongoing support"],
+    icon: Smartphone,
+    accent: "var(--color-emerald)",
+  },
+];
+
+export const deliverySteps: { title: string; description: string }[] = [
+  { title: "Discover", description: "We map your workflows, goals and existing tools in a free consultation." },
+  { title: "Design", description: "Clickable designs and a clear scope, timeline and fixed quote before we build." },
+  { title: "Build", description: "Weekly demos so you see progress and shape the product as it comes together." },
+  { title: "Launch & support", description: "Go-live, data migration, training and ongoing maintenance after launch." },
+];
 
 export type Stat = { value: number; suffix: string; label: string; prefix?: string };
 
@@ -352,6 +415,14 @@ export const faqs: Faq[] = [
   {
     q: "Is my business data secure?",
     a: "Security is foundational. Data is encrypted in transit and at rest, access is controlled with granular role-based permissions, and every change is captured in immutable audit logs across all outlets.",
+  },
+  {
+    q: "Do you offer a full ERP system?",
+    a: "Yes. Our ERP connects sales, billing, inventory, purchasing, accounting, HR and reporting in one system, and we configure it around your business processes rather than forcing you into a template.",
+  },
+  {
+    q: "Do you build websites and mobile apps for other businesses?",
+    a: "Yes. Alongside our own platform, our team designs and builds custom websites, e-commerce stores, web portals and Android/iOS apps for clients — from scoping and design through launch and ongoing support.",
   },
   {
     q: "Can Seven14 integrate with my existing tools?",

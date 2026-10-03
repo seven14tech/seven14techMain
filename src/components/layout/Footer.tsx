@@ -15,6 +15,15 @@ const columns: { title: string; links: { label: string; href: string }[] }[] = [
     ],
   },
   {
+    title: "Services",
+    links: [
+      { label: "ERP System", href: "/services#erp" },
+      { label: "Billing System", href: "/services#billing" },
+      { label: "Website Development", href: "/services#websites" },
+      { label: "Mobile App Development", href: "/services#apps" },
+    ],
+  },
+  {
     title: "Solutions",
     links: [
       { label: "Restaurants", href: "/solutions#restaurants" },
@@ -43,15 +52,15 @@ export function Footer() {
           <div className="flex flex-col gap-5">
             <Logo />
             <p className="max-w-xs text-sm leading-relaxed text-fg-muted">
-              The modern operating system for billing, inventory, CRM and operations —
-              built for restaurants, retail and multi-outlet businesses.
+              The modern operating system for billing, ERP, inventory and CRM — plus custom
+              websites and mobile apps built for your business.
             </p>
             <Button href="/contact" size="sm" className="w-fit">
               Book a Free Demo
             </Button>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
             {columns.map((col) => (
               <div key={col.title} className="flex flex-col gap-3.5">
                 <h3 className="font-display text-sm font-semibold text-fg">{col.title}</h3>
