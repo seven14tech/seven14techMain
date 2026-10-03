@@ -278,65 +278,6 @@ export const industries: Industry[] = [
   },
 ];
 
-export type Plan = {
-  name: string;
-  price: string;
-  period: string;
-  blurb: string;
-  features: string[];
-  cta: string;
-  featured?: boolean;
-};
-
-export const plans: Plan[] = [
-  {
-    name: "Starter",
-    price: "₹1,499",
-    period: "/outlet / mo",
-    blurb: "Everything a single outlet needs to run billing and inventory beautifully.",
-    features: [
-      "Billing & POS",
-      "Inventory management",
-      "Digital receipts & GST",
-      "Basic reports",
-      "1 outlet, 3 users",
-      "Email support",
-    ],
-    cta: "Start free trial",
-  },
-  {
-    name: "Growth",
-    price: "₹3,999",
-    period: "/outlet / mo",
-    blurb: "For growing businesses that need CRM, KDS and deeper analytics.",
-    features: [
-      "Everything in Starter",
-      "Kitchen Display System",
-      "CRM & loyalty programs",
-      "Advanced analytics",
-      "Up to 5 outlets, 25 users",
-      "Priority support",
-    ],
-    cta: "Book a demo",
-    featured: true,
-  },
-  {
-    name: "Enterprise",
-    price: "Custom",
-    period: "tailored",
-    blurb: "Multi-outlet operations with finance, audit and dedicated success.",
-    features: [
-      "Everything in Growth",
-      "Financials & audit logs",
-      "Unlimited outlets & users",
-      "SSO & advanced roles",
-      "Open API & integrations",
-      "Dedicated success manager",
-    ],
-    cta: "Contact sales",
-  },
-];
-
 export type Testimonial = {
   quote: string;
   name: string;
@@ -426,7 +367,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "Can Seven14 integrate with my existing tools?",
-    a: "Yes. Enterprise plans include an open API and ready integrations for accounting, delivery aggregators and payment providers, so Seven14 fits into the stack you already run.",
+    a: "Yes. Seven14 offers an open API and ready integrations for accounting, delivery aggregators and payment providers, so Seven14 fits into the stack you already run.",
   },
 ];
 

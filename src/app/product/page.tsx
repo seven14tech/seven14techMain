@@ -32,7 +32,7 @@ export default function ProductPage() {
       >
         <div className="flex flex-col items-center gap-3 sm:flex-row">
           <Button href="/contact" size="lg">Book Demo</Button>
-          <Button href="/pricing" size="lg" variant="secondary">View pricing</Button>
+          <Button href="/services" size="lg" variant="secondary">Our services</Button>
         </div>
       </PageHero>
       <EcosystemMap />

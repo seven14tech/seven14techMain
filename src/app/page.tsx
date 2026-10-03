@@ -8,7 +8,6 @@ import { WhyStats } from "@/components/sections/WhyStats";
 import { Industries } from "@/components/sections/Industries";
 import { AnalyticsShowcase } from "@/components/sections/AnalyticsShowcase";
 import { CaseStudies } from "@/components/sections/CaseStudies";
-import { PricingTeaser } from "@/components/sections/Pricing";
 import { Faq } from "@/components/sections/Faq";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -28,7 +27,6 @@ export default function HomePage() {
       <Industries />
       <AnalyticsShowcase />
       <CaseStudies />
-      <PricingTeaser />
       <Faq />
       <FinalCta />
     </>

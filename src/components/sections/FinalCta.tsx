@@ -29,8 +29,8 @@ export function FinalCta() {
                 Book a Free Demo
                 <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
               </Button>
-              <Button href="/pricing" size="lg" variant="outline" data-cursor>
-                View pricing
+              <Button href="/services" size="lg" variant="outline" data-cursor>
+                Our services
               </Button>
             </div>
           </div>

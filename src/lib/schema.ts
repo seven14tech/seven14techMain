@@ -1,5 +1,5 @@
 import { site } from "./site";
-import { faqs, plans } from "./content";
+import { faqs } from "./content";
 
 export function organizationSchema() {
   return {
@@ -37,13 +37,6 @@ export function softwareApplicationSchema() {
     operatingSystem: "Web, iOS, Android, Windows",
     description: site.description,
     url: site.url,
-    offers: plans.map((p) => ({
-      "@type": "Offer",
-      name: p.name,
-      price: p.price.replace(/[^0-9]/g, "") || "0",
-      priceCurrency: "INR",
-      description: p.blurb,
-    })),
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: "4.9",
