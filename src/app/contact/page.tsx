@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Mail, Phone, Clock, MapPin, ArrowUpRight } from "lucide-react";
+import { Mail, Clock, MapPin, ArrowUpRight } from "lucide-react";
 import { PageHero } from "@/components/sections/PageHero";
 import { DemoForm } from "@/components/sections/DemoForm";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -15,9 +15,8 @@ export const metadata: Metadata = {
 
 const points = [
   { icon: Mail, label: "Email", value: site.email, href: `mailto:${site.email}` },
-  { icon: Phone, label: "Call", value: site.phone, href: `tel:${site.phone.replace(/\s/g, "")}` },
   { icon: Clock, label: "Response time", value: "Within 1 business day" },
-  { icon: MapPin, label: "Headquarters", value: "Bengaluru, India" },
+  { icon: MapPin, label: "Headquarters", value: site.location },
 ];
 
 const expect = [

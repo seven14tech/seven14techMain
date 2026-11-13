@@ -38,7 +38,6 @@ const columns: { title: string; links: { label: string; href: string }[] }[] = [
     links: [
       { label: "Book a demo", href: "/contact" },
       { label: site.email, href: `mailto:${site.email}` },
-      { label: site.phone, href: `tel:${site.phone.replace(/\s/g, "")}` },
     ],
   },
 ];

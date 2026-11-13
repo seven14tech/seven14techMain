@@ -12,6 +12,12 @@ export function organizationSchema() {
     description: site.description,
     email: site.email,
     foundingDate: site.founded,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Pune",
+      addressRegion: "Maharashtra",
+      addressCountry: "IN",
+    },
     sameAs: [
       "https://twitter.com/seven14tech",
       "https://www.linkedin.com/company/seven14tech",
@@ -20,7 +26,6 @@ export function organizationSchema() {
       "@type": "ContactPoint",
       contactType: "sales",
       email: site.email,
-      telephone: site.phone,
       areaServed: "IN",
       availableLanguage: ["en", "hi"],
     },
