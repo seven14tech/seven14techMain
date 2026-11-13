@@ -6,17 +6,31 @@ import { Button } from "@/components/ui/Button";
 import { billingIndustries, erpAudiences, services } from "@/lib/content";
 import { site } from "@/lib/site";
 
-type Status = "idle" | "submitting" | "done";
+type Status = "idle" | "submitting" | "done" | "error";
 
 export function DemoForm({ interest = "billing" }: { interest?: string }) {
   const [status, setStatus] = useState<Status>("idle");
+  const [error, setError] = useState("");
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (status === "submitting") return;
     setStatus("submitting");
-    // No backend wired yet — simulate a successful submit.
-    window.setTimeout(() => setStatus("done"), 900);
+    setError("");
+    const payload = Object.fromEntries(new FormData(e.currentTarget).entries());
+    try {
+      const res = await fetch("/api/demo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const json = (await res.json().catch(() => ({}))) as { ok?: boolean; error?: string };
+      if (!res.ok || !json.ok) throw new Error(json.error || `Something went wrong. Please email us at ${site.email}.`);
+      setStatus("done");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : `Please email us at ${site.email}.`);
+      setStatus("error");
+    }
   };
 
   if (status === "done") {
@@ -104,7 +118,20 @@ export function DemoForm({ interest = "billing" }: { interest?: string }) {
             className="input"
           />
         </Field>
+        {/* Honeypot for bots: hidden from people and screen readers. */}
+        <div aria-hidden style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }}>
+          <label htmlFor="website">Website</label>
+          <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+        </div>
       </div>
+      {status === "error" && (
+        <p role="alert" className="small mt-2" style={{ color: "#b4472a" }}>
+          {error}{" "}
+          <a href={`mailto:${site.email}`} className="link">
+            {site.email}
+          </a>
+        </p>
+      )}
       <Button type="submit" block className="mt-3" disabled={status === "submitting"}>
         {status === "submitting" ? (
           <>

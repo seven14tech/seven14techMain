@@ -1,0 +1,21 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci
+    build:
+      commands:
+        # Amplify console env vars are not visible to the Next.js server at
+        # runtime, so copy the mail settings into .env.production for the
+        # /api/demo route (see src/app/api/demo/route.ts).
+        - env | grep -E '^(SMTP_|MAIL_)' >> .env.production || true
+        - npm run build
+  artifacts:
+    baseDirectory: .next
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
+      - .next/cache/**/*
