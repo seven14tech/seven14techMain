@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { site } from "@/lib/site";
 
-export const alt = `${site.name} — Modern Billing. Smarter Operations. One Platform.`;
+export const alt = `${site.name} — Billing System, Education ERP & Custom Software`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -17,8 +17,8 @@ export default function OpengraphImage() {
           justifyContent: "space-between",
           padding: 80,
           background:
-            "radial-gradient(900px 500px at 80% -10%, rgba(255,92,40,0.35), transparent), #0a0908",
-          fontFamily: "sans-serif",
+            "radial-gradient(700px 420px at 0% 0%, rgba(46,91,255,0.16), transparent), radial-gradient(700px 420px at 100% 0%, rgba(246,148,71,0.2), transparent), #fcfdff",
+          fontFamily: "serif",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
@@ -26,20 +26,20 @@ export default function OpengraphImage() {
             style={{
               width: 64,
               height: 64,
-              borderRadius: 18,
+              borderRadius: 16,
               display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
+              alignItems: "baseline",
               justifyContent: "center",
-              lineHeight: 1,
-              background: "linear-gradient(135deg, #ff7e4d, #e8430f)",
-              color: "white",
+              paddingTop: 12,
+              border: "1.5px solid rgba(15,23,42,0.15)",
+              background: "#ffffff",
+              color: "#151824",
             }}
           >
-            <div style={{ fontSize: 30, fontWeight: 800 }}>7</div>
-            <div style={{ fontSize: 18, fontWeight: 700, opacity: 0.85 }}>14</div>
+            <div style={{ fontSize: 32 }}>7</div>
+            <div style={{ fontSize: 14, color: "#6E7687" }}>14</div>
           </div>
-          <div style={{ color: "#faf8f5", fontSize: 34, fontWeight: 700 }}>
+          <div style={{ color: "#151824", fontSize: 38 }}>
             Seven14 Tech Studio
           </div>
         </div>
@@ -47,32 +47,34 @@ export default function OpengraphImage() {
         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
           <div
             style={{
-              color: "#faf8f5",
-              fontSize: 76,
-              fontWeight: 800,
+              color: "#151824",
+              fontSize: 80,
+              fontWeight: 400,
               lineHeight: 1.05,
               letterSpacing: -2,
               maxWidth: 980,
             }}
           >
-            Run Billing, Inventory, CRM & Operations from one platform.
+            Software that runs Indian businesses and institutes.
           </div>
-          <div style={{ color: "#b3aaa0", fontSize: 30, maxWidth: 880 }}>
-            The modern business operating system for restaurants, retail and
-            multi-outlet businesses.
+          <div style={{ color: "#484E5E", fontSize: 30, maxWidth: 900, fontFamily: "sans-serif" }}>
+            GST billing for shops and restaurants, an education ERP for schools and colleges,
+            and custom websites and apps.
           </div>
         </div>
 
         <div style={{ display: "flex", gap: 16 }}>
-          {["Billing", "POS", "Inventory", "CRM", "Analytics"].map((t) => (
+          {["Billing System", "Education ERP", "Websites", "Mobile Apps"].map((t) => (
             <div
               key={t}
               style={{
-                color: "#ffb799",
+                color: "#484E5E",
                 fontSize: 24,
+                fontFamily: "sans-serif",
                 padding: "10px 22px",
                 borderRadius: 999,
-                border: "1px solid rgba(255,92,40,0.4)",
+                background: "#ffffff",
+                border: "1px solid rgba(15,23,42,0.12)",
               }}
             >
               {t}

@@ -3,14 +3,12 @@
 import { useState } from "react";
 import { Check, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { industries, services } from "@/lib/content";
+import { billingIndustries, erpAudiences, services } from "@/lib/content";
+import { site } from "@/lib/site";
 
 type Status = "idle" | "submitting" | "done";
 
-const field =
-  "w-full rounded-lg border border-border bg-bg/50 px-3.5 py-2.5 text-sm text-fg placeholder:text-fg-subtle outline-none transition-colors focus:border-brand/60";
-
-export function DemoForm() {
+export function DemoForm({ interest = "billing" }: { interest?: string }) {
   const [status, setStatus] = useState<Status>("idle");
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -23,16 +21,18 @@ export function DemoForm() {
 
   if (status === "done") {
     return (
-      <div className="flex flex-col items-center justify-center rounded-2xl border border-border-strong bg-surface/70 p-10 text-center ring-hairline">
-        <span className="grid h-14 w-14 place-items-center rounded-full bg-emerald/15 text-emerald">
-          <Check className="h-7 w-7" />
+      <div className="card form-card stack center-text" style={{ justifyItems: "center" }}>
+        <span className="gem sage" style={{ width: 52, height: 52 }}>
+          <Check width={22} height={22} aria-hidden />
         </span>
-        <h3 className="mt-5 font-display text-2xl font-semibold text-fg">Thanks — you&apos;re booked in</h3>
-        <p className="mt-2 max-w-sm text-sm leading-relaxed text-fg-muted">
-          Our team will reach out within one business day to schedule your personalised
-          30-minute demo. Keep an eye on your inbox.
+        <h2 className="h2" style={{ fontSize: "2rem" }}>
+          Thank you, you&apos;re <em>booked</em> in.
+        </h2>
+        <p className="muted" style={{ maxWidth: "26rem" }}>
+          Our team will reach out within one business day to schedule your 30-minute demo. You can
+          also write to us at {site.email}.
         </p>
-        <Button className="mt-7" onClick={() => setStatus("idle")} variant="secondary">
+        <Button variant="secondary" onClick={() => setStatus("idle")}>
           Book another
         </Button>
       </div>
@@ -40,96 +40,91 @@ export function DemoForm() {
   }
 
   return (
-    <form
-      onSubmit={onSubmit}
-      className="rounded-2xl border border-border-strong bg-surface/70 p-6 ring-hairline md:p-8"
-    >
-      <div className="grid gap-4 sm:grid-cols-2">
-        <Labeled label="Full name" htmlFor="name">
-          <input id="name" name="name" required placeholder="Aarav Mehta" className={field} />
-        </Labeled>
-        <Labeled label="Work email" htmlFor="email">
-          <input id="email" name="email" type="email" required placeholder="you@company.com" className={field} />
-        </Labeled>
-        <Labeled label="Company" htmlFor="company">
-          <input id="company" name="company" required placeholder="Spice Route Hospitality" className={field} />
-        </Labeled>
-        <Labeled label="Phone" htmlFor="phone">
-          <input id="phone" name="phone" type="tel" placeholder="+91 98765 43210" className={field} />
-        </Labeled>
-        <Labeled label="Business type" htmlFor="type">
-          <select id="type" name="type" required className={field} defaultValue="">
-            <option value="" disabled>
-              Select an industry
-            </option>
-            {industries.map((i) => (
-              <option key={i.id} value={i.id}>
-                {i.name}
+    <form onSubmit={onSubmit} className="card form-card">
+      <div className="fields">
+        <Field label="Full name" id="name">
+          <input id="name" name="name" required autoComplete="name" placeholder="Aarav Mehta" className="input" />
+        </Field>
+        <Field label="Work email" id="email">
+          <input id="email" name="email" type="email" required autoComplete="email" placeholder="you@company.com" className="input" />
+        </Field>
+        <Field label="Company" id="company">
+          <input id="company" name="company" required autoComplete="organization" placeholder="Your business or institute" className="input" />
+        </Field>
+        <Field label="Phone" id="phone">
+          <input id="phone" name="phone" type="tel" autoComplete="tel" placeholder="+91 98765 43210" className="input" />
+        </Field>
+        <Field label="Interested in" id="service" full>
+          <select id="service" name="service" required className="input" defaultValue={interest}>
+            <option value="billing">Seven14 Billing System</option>
+            <option value="erp">Seven14 Education ERP</option>
+            {services.map((s) => (
+              <option key={s.id} value={s.id}>
+                {s.name}
               </option>
             ))}
           </select>
-        </Labeled>
-        <Labeled label="Number of outlets" htmlFor="outlets">
-          <select id="outlets" name="outlets" className={field} defaultValue="1">
-            <option value="1">1 outlet</option>
-            <option value="2-5">2–5 outlets</option>
-            <option value="6-20">6–20 outlets</option>
-            <option value="20+">20+ outlets</option>
-          </select>
-        </Labeled>
-      </div>
-      <Labeled label="Interested in" htmlFor="service" className="mt-4">
-        <select id="service" name="service" className={field} defaultValue="platform">
-          <option value="platform">Seven14 platform (POS, inventory, CRM)</option>
-          {services.map((s) => (
-            <option key={s.id} value={s.id}>
-              {s.name}
+        </Field>
+        <Field label="Type of organisation" id="type">
+          <select id="type" name="type" required className="input" defaultValue="">
+            <option value="" disabled>
+              Select one
             </option>
-          ))}
-        </select>
-      </Labeled>
-      <Labeled label="What would you like to see?" htmlFor="message" className="mt-4">
-        <textarea
-          id="message"
-          name="message"
-          rows={4}
-          placeholder="Tell us about your current setup and what you'd like to improve…"
-          className={field}
-        />
-      </Labeled>
-
-      <Button type="submit" size="lg" className="mt-6 w-full" disabled={status === "submitting"}>
+            <optgroup label="Business">
+              {billingIndustries.map((i) => (
+                <option key={i.id} value={i.id}>
+                  {i.name}
+                </option>
+              ))}
+            </optgroup>
+            <optgroup label="Education">
+              {erpAudiences.map((i) => (
+                <option key={i.id} value={i.id}>
+                  {i.name}
+                </option>
+              ))}
+            </optgroup>
+            <option value="other">Something else</option>
+          </select>
+        </Field>
+        <Field label="Branches or centres" id="branches">
+          <select id="branches" name="branches" className="input" defaultValue="1">
+            <option value="1">1</option>
+            <option value="2-5">2–5</option>
+            <option value="6-20">6–20</option>
+            <option value="20+">20+</option>
+          </select>
+        </Field>
+        <Field label="What would you like to see?" id="message" full>
+          <textarea
+            id="message"
+            name="message"
+            rows={4}
+            placeholder="Tell us about your current setup and what you'd like to improve…"
+            className="input"
+          />
+        </Field>
+      </div>
+      <Button type="submit" block className="mt-3" disabled={status === "submitting"}>
         {status === "submitting" ? (
           <>
-            <Loader2 className="h-4 w-4 animate-spin" /> Sending…
+            <Loader2 className="spin" aria-hidden /> Sending…
           </>
         ) : (
           "Book my demo"
         )}
       </Button>
-      <p className="mt-3 text-center text-xs text-fg-subtle">
+      <p className="faint small center-text mt-2">
         By submitting, you agree to be contacted about Seven14 Tech Studio. We never share your data.
       </p>
     </form>
   );
 }
 
-function Labeled({
-  label,
-  htmlFor,
-  children,
-  className,
-}: {
-  label: string;
-  htmlFor: string;
-  children: React.ReactNode;
-  className?: string;
-}) {
+function Field({ label, id, full, children }: { label: string; id: string; full?: boolean; children: React.ReactNode }) {
   return (
-    <div className={className}>
-      <label htmlFor={htmlFor} className="mb-1.5 block text-xs font-medium text-fg-muted">
-        {label}
-      </label>
+    <div className={`field${full ? " full" : ""}`}>
+      <label htmlFor={id}>{label}</label>
       {children}
     </div>
   );

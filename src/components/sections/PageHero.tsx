@@ -1,39 +1,32 @@
-import { Badge } from "@/components/ui/Badge";
-import { Reveal } from "@/components/ui/Reveal";
+import { CornerMotif } from "@/components/ornament/Ornaments";
 
-export function PageHero({
-  eyebrow,
-  title,
-  description,
-  children,
-}: {
+type Props = {
   eyebrow: string;
   title: React.ReactNode;
-  description: string;
+  description: React.ReactNode;
   children?: React.ReactNode;
-}) {
+};
+
+/** Inner-page hero: same washes as the home hero, quieter framing. */
+export function PageHero({ eyebrow, title, description, children }: Props) {
   return (
-    <section className="relative overflow-hidden pt-36 pb-12 md:pt-44 md:pb-16">
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-grid opacity-[0.16] mask-fade-b" />
-        <div className="absolute -top-20 left-1/2 h-72 w-[80%] -translate-x-1/2 rounded-[100%] bg-brand/10 blur-[140px]" />
-      </div>
-      <div className="container-page">
-        <Reveal stagger className="mx-auto flex max-w-3xl flex-col items-center text-center">
-          <div data-reveal-item>
-            <Badge>{eyebrow}</Badge>
-          </div>
-          <h1
-            data-reveal-item
-            className="mt-6 text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-fg sm:text-5xl md:text-6xl"
-          >
+    <section className="hero page-hero">
+      <CornerMotif position="tr" />
+      <div className="container">
+        <div className="hero-copy">
+          <span className="eyebrow reveal">{eyebrow}</span>
+          <h1 className="h1 reveal" style={{ "--d": "60ms" } as React.CSSProperties}>
             {title}
           </h1>
-          <p data-reveal-item className="mt-5 max-w-2xl text-pretty text-base leading-relaxed text-fg-muted md:text-lg">
+          <p className="lead reveal" style={{ "--d": "120ms" } as React.CSSProperties}>
             {description}
           </p>
-          {children && <div data-reveal-item className="mt-8">{children}</div>}
-        </Reveal>
+          {children && (
+            <div className="hero-actions reveal" style={{ "--d": "180ms" } as React.CSSProperties}>
+              {children}
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );

@@ -27,21 +27,29 @@ export function organizationSchema() {
   };
 }
 
-export function softwareApplicationSchema() {
+export function billingSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    name: site.name,
+    name: "Seven14 Billing System",
     applicationCategory: "BusinessApplication",
-    applicationSubCategory: "Billing, POS & Inventory Management Software",
-    operatingSystem: "Web, iOS, Android, Windows",
-    description: site.description,
-    url: site.url,
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "1240",
-    },
+    applicationSubCategory: "GST Billing, POS, Inventory & Accounting Software",
+    operatingSystem: "Windows, Android",
+    url: `${site.url}/billing`,
+    publisher: { "@type": "Organization", name: site.name },
+  };
+}
+
+export function erpSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "Seven14 Education ERP",
+    applicationCategory: "EducationalApplication",
+    applicationSubCategory: "School, College & Institute Management Software",
+    operatingSystem: "Web, Android",
+    url: `${site.url}/erp`,
+    publisher: { "@type": "Organization", name: site.name },
   };
 }
 

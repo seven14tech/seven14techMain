@@ -5,73 +5,67 @@ import { Button } from "@/components/ui/Button";
 
 const columns: { title: string; links: { label: string; href: string }[] }[] = [
   {
-    title: "Product",
+    title: "Billing System",
     links: [
-      { label: "Billing & POS", href: "/product#billing" },
-      { label: "Kitchen Display", href: "/product#kds" },
-      { label: "Inventory", href: "/product#inventory" },
-      { label: "CRM & Loyalty", href: "/product#crm" },
-      { label: "Analytics", href: "/product#reports" },
+      { label: "POS & Checkout", href: "/billing#pos" },
+      { label: "GST Invoicing", href: "/billing#invoicing" },
+      { label: "Inventory", href: "/billing#inventory" },
+      { label: "Accounting", href: "/billing#accounting" },
+      { label: "Restaurant & KOT", href: "/billing#restaurant" },
+    ],
+  },
+  {
+    title: "Education ERP",
+    links: [
+      { label: "Admissions", href: "/erp#admissions" },
+      { label: "Academics", href: "/erp#academics" },
+      { label: "Fees & Finance", href: "/erp#fees" },
+      { label: "Parent Portal", href: "/erp#portal" },
+      { label: "Open the ERP", href: "https://erp.seven14tech.com" },
     ],
   },
   {
     title: "Services",
     links: [
-      { label: "ERP System", href: "/services#erp" },
-      { label: "Billing System", href: "/services#billing" },
       { label: "Website Development", href: "/services#websites" },
       { label: "Mobile App Development", href: "/services#apps" },
-    ],
-  },
-  {
-    title: "Solutions",
-    links: [
-      { label: "Restaurants", href: "/solutions#restaurants" },
-      { label: "Cafés", href: "/solutions#cafes" },
-      { label: "Retail Stores", href: "/solutions#retail" },
-      { label: "Cloud Kitchens", href: "/solutions#cloud-kitchens" },
-      { label: "Franchises", href: "/solutions#franchises" },
+      { label: "Custom Software", href: "/services#custom" },
+      { label: "Hosting & Support", href: "/services#support" },
     ],
   },
   {
     title: "Company",
     links: [
-      { label: "Book a Demo", href: "/contact" },
-      { label: "Contact Sales", href: "/contact" },
+      { label: "Book a demo", href: "/contact" },
+      { label: site.email, href: `mailto:${site.email}` },
+      { label: site.phone, href: `tel:${site.phone.replace(/\s/g, "")}` },
     ],
   },
 ];
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-border bg-bg-2">
-      <div className="pointer-events-none absolute -bottom-40 left-1/2 h-80 w-[120%] -translate-x-1/2 rounded-[100%] bg-brand/10 blur-[120px]" />
-      <div className="container-page relative py-16 md:py-20">
-        <div className="grid gap-12 lg:grid-cols-[1.4fr_2fr]">
-          <div className="flex flex-col gap-5">
+    <footer className="site-footer">
+      <div className="container">
+        <div className="footer-grid">
+          <div className="stack" style={{ justifyItems: "start", alignContent: "start" }}>
             <Logo />
-            <p className="max-w-xs text-sm leading-relaxed text-fg-muted">
-              The modern operating system for billing, ERP, inventory and CRM — plus custom
-              websites and mobile apps built for your business.
+            <p className="muted small" style={{ maxWidth: "22rem" }}>
+              A GST billing system, an education ERP, and the custom websites and apps that go
+              around them. Built in India.
             </p>
-            <Button href="/contact" size="sm" className="w-fit">
-              Book a Free Demo
+            <Button href="/contact" size="sm" arrow>
+              Book a free demo
             </Button>
           </div>
-
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
+          <div className="footer-cols">
             {columns.map((col) => (
-              <div key={col.title} className="flex flex-col gap-3.5">
-                <h3 className="font-display text-sm font-semibold text-fg">{col.title}</h3>
-                <ul className="flex flex-col gap-2.5">
-                  {col.links.map((link) => (
-                    <li key={link.label}>
-                      <Link
-                        href={link.href}
-                        className="text-sm text-fg-muted transition-colors hover:text-fg"
-                      >
-                        {link.label}
-                      </Link>
+              <div key={col.title}>
+                <h3>{col.title}</h3>
+                <ul>
+                  {col.links.map((l) => (
+                    <li key={l.label}>
+                      {l.href.startsWith("/") ? <Link href={l.href}>{l.label}</Link> : <a href={l.href}>{l.label}</a>}
                     </li>
                   ))}
                 </ul>
@@ -79,22 +73,18 @@ export function Footer() {
             ))}
           </div>
         </div>
-
-        <div className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-border pt-8 text-sm text-fg-subtle sm:flex-row sm:items-center">
+        <div className="footer-base">
           <p>
-            © {site.founded}–present {site.name}. All rights reserved.
+            © {site.founded}–{new Date().getFullYear()} {site.name}. Made in India.
           </p>
-          <div className="flex items-center gap-6">
-            <Link href="/contact" className="transition-colors hover:text-fg">
-              Privacy
-            </Link>
-            <Link href="/contact" className="transition-colors hover:text-fg">
-              Terms
-            </Link>
-            <a href={`mailto:${site.email}`} className="transition-colors hover:text-fg">
-              {site.email}
-            </a>
-          </div>
+          <nav aria-label="Legal">
+            <Link href="/contact">Privacy</Link>
+            <Link href="/contact">Terms</Link>
+            <a href={`mailto:${site.email}`}>{site.email}</a>
+          </nav>
+        </div>
+        <div className="footer-word" aria-hidden>
+          Seven14
         </div>
       </div>
     </footer>

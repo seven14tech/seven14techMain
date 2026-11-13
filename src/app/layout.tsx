@@ -1,29 +1,29 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Space_Grotesk, Geist_Mono } from "next/font/google";
+import { Newsreader, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { SmoothScroll } from "@/components/providers/SmoothScroll";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { ScrollProgress } from "@/components/layout/ScrollProgress";
-import { CustomCursor } from "@/components/layout/CustomCursor";
+import { Interactions } from "@/components/ui/Interactions";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { organizationSchema, softwareApplicationSchema } from "@/lib/schema";
+import { organizationSchema } from "@/lib/schema";
 import { site } from "@/lib/site";
 
-const inter = Inter({
-  variable: "--font-inter",
+const newsreader = Newsreader({
+  variable: "--font-newsreader",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  axes: ["opsz"],
+  display: "swap",
+});
+
+const jakarta = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
   subsets: ["latin"],
   display: "swap",
 });
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const jetbrains = JetBrains_Mono({
+  variable: "--font-jetbrains",
   subsets: ["latin"],
   display: "swap",
 });
@@ -31,22 +31,22 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — Billing, POS, Inventory & CRM in One Platform`,
+    default: `${site.name} — Billing System, Education ERP & Custom Software`,
     template: `%s — ${site.name}`,
   },
   description: site.description,
   applicationName: site.name,
   keywords: [
-    "Billing Software India",
+    "GST Billing Software India",
     "POS Software India",
     "Restaurant Billing Software",
-    "Inventory Management Software",
-    "Retail POS System",
-    "Business Management Software",
-    "Restaurant Management Platform",
-    "Cloud POS",
-    "Multi Outlet Billing Software",
-    "ERP Software for Restaurants",
+    "Pharmacy Billing Software",
+    "Inventory and Accounting Software",
+    "Education ERP",
+    "School Management Software",
+    "College ERP India",
+    "Institute Management System",
+    "Website and App Development India",
   ],
   authors: [{ name: site.name }],
   creator: site.name,
@@ -57,14 +57,14 @@ export const metadata: Metadata = {
     locale: site.locale,
     url: site.url,
     siteName: site.name,
-    title: `${site.name} — Modern Billing. Smarter Operations. One Platform.`,
+    title: `${site.name} — Billing System, Education ERP & Custom Software`,
     description: site.description,
     images: [
       {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: `${site.name} — business operating system`,
+        alt: `${site.name} — billing system, education ERP and custom software`,
       },
     ],
   },
@@ -72,7 +72,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: site.twitter,
     creator: site.twitter,
-    title: `${site.name} — Modern Billing. Smarter Operations.`,
+    title: `${site.name} — Billing, ERP & Custom Software`,
     description: site.description,
     images: ["/opengraph-image"],
   },
@@ -88,7 +88,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a0908",
+  themeColor: "#ffffff",
   width: "device-width",
   initialScale: 1,
 };
@@ -99,23 +99,22 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${spaceGrotesk.variable} ${geistMono.variable}`}
+      className={`${newsreader.variable} ${jakarta.variable} ${jetbrains.variable}`}
+      suppressHydrationWarning
     >
-      <body className="min-h-dvh antialiased">
-        <JsonLd data={[organizationSchema(), softwareApplicationSchema()]} />
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-brand focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
-        >
+      <head>
+        {/* Reveal-on-scroll only hides content once we know JS is running. */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      </head>
+      <body>
+        <JsonLd data={organizationSchema()} />
+        <a href="#main" className="skip-link">
           Skip to content
         </a>
-        <CustomCursor />
-        <ScrollProgress />
-        <SmoothScroll>
-          <Navbar />
-          <main id="main">{children}</main>
-          <Footer />
-        </SmoothScroll>
+        <Interactions />
+        <Navbar />
+        <main id="main">{children}</main>
+        <Footer />
       </body>
     </html>
   );

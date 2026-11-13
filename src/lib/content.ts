@@ -5,21 +5,42 @@ import {
   Boxes,
   ShoppingCart,
   Users,
-  BarChart3,
   Wallet,
   ShieldCheck,
-  Settings2,
-  Store,
+  Scissors,
+  Contact,
   Coffee,
   ShoppingBag,
-  Bike,
-  Building2,
+  Pill,
+  Truck,
   Network,
-  Layers,
   Globe,
   Smartphone,
+  CodeXml,
+  LifeBuoy,
+  GraduationCap,
+  UserRound,
+  BookOpen,
+  IndianRupee,
+  Briefcase,
+  Workflow,
+  Library,
+  School,
+  Building2,
+  Landmark,
+  Wrench,
+  MonitorSmartphone,
   type LucideIcon,
 } from "lucide-react";
+
+/* ------------------------------------------------------------------
+   Content for the three things Seven14 sells:
+   1. Billing System (Seven14 Business OS, Windows + Android)
+   2. Education ERP (erp.seven14tech.com, web + Android)
+   3. Custom software services (websites, apps, custom systems)
+
+   Only features marked as built in the product repos are listed here.
+   ------------------------------------------------------------------ */
 
 export type Module = {
   id: string;
@@ -28,188 +49,106 @@ export type Module = {
   description: string;
   features: string[];
   icon: LucideIcon;
-  accent: string; // css color token
 };
 
-export const modules: Module[] = [
-  {
-    id: "billing",
-    name: "Billing System",
-    tagline: "Checkout in seconds",
-    description:
-      "Lightning-fast billing with GST support, digital receipts and every payment method your customers expect.",
-    features: ["Fast checkout", "GST & tax engine", "Digital receipts", "UPI, card, cash & wallets"],
-    icon: Receipt,
-    accent: "var(--color-brand)",
-  },
+/* ---------------- Billing System ---------------- */
+
+export const billingModules: Module[] = [
   {
     id: "pos",
-    name: "Point of Sale",
-    tagline: "Built for the counter",
+    name: "POS & Checkout",
+    tagline: "Fast at the counter",
     description:
-      "A POS that keeps up with the rush — multi-terminal, multi-outlet and offline-ready out of the box.",
-    features: ["Quick billing", "Multi-terminal support", "Multi-outlet management", "Offline-first sync"],
+      "Search or scan a barcode, take cash, UPI or card, and close the bill. Stock updates the moment the sale is done.",
+    features: ["Barcode scan & search", "Cash with change, UPI, card", "On-screen receipts", "Live stock on every item"],
     icon: ScanLine,
-    accent: "var(--color-amber)",
   },
   {
-    id: "kds",
-    name: "Kitchen Display",
-    tagline: "The kitchen, in real time",
+    id: "invoicing",
+    name: "GST Invoicing",
+    tagline: "Invoices that add up",
     description:
-      "Replace paper tickets with a live kitchen workflow that tracks every order from fire to pass.",
-    features: ["Real-time order tracking", "Live kitchen workflow", "Course & station routing", "Prep-time analytics"],
-    icon: ChefHat,
-    accent: "var(--color-emerald)",
+      "B2B invoices with line-level tax and discounts, partial and full payments, and recurring invoices for repeat customers.",
+    features: ["HSN & GST on every line", "Draft, sent, partial, paid", "Recurring invoices", "Payments posted to the books"],
+    icon: Receipt,
   },
   {
     id: "inventory",
     name: "Inventory",
-    tagline: "Never run out, never over-order",
+    tagline: "Know exactly what is on the shelf",
     description:
-      "Track every item across outlets with low-stock alerts and batch-level traceability.",
-    features: ["Stock management", "Low-stock alerts", "Batch & expiry tracking", "Recipe-level depletion"],
+      "An append-only stock ledger with batch numbers, expiry dates and first-expired-first-out dispensing.",
+    features: ["Real-time stock balances", "Batch, MRP & expiry tracking", "Near-expiry alerts", "FEFO dispensing"],
     icon: Boxes,
-    accent: "var(--color-sky)",
   },
   {
     id: "purchasing",
     name: "Purchasing",
-    tagline: "Procurement without spreadsheets",
+    tagline: "From vendor to shelf",
     description:
-      "Manage vendors and raise purchase orders that flow straight into inventory and finance.",
-    features: ["Vendor management", "Purchase orders", "GRN & approvals", "Cost tracking"],
+      "Keep vendors with GSTIN and payment terms, raise purchase orders and receive goods straight into stock.",
+    features: ["Vendor master with GSTIN", "Purchase orders", "Goods receipt (GRN)", "Automatic stock intake"],
     icon: ShoppingCart,
-    accent: "var(--color-violet)",
+  },
+  {
+    id: "accounting",
+    name: "Accounting",
+    tagline: "Books that keep themselves",
+    description:
+      "Every sale, purchase and payment posts a double-entry journal automatically, against a chart of accounts set up for Indian businesses.",
+    features: ["Auto-posted double entry", "Trial balance", "Profit & loss, balance sheet", "GST summary by rate"],
+    icon: Wallet,
+  },
+  {
+    id: "restaurant",
+    name: "Restaurant & KOT",
+    tagline: "Table to kitchen, in sync",
+    description:
+      "Tables by section, dine-in orders, kitchen order tickets and a live kitchen display, settled to the POS in one tap.",
+    features: ["Tables & sections", "Kitchen order tickets", "Live kitchen display", "Settle to POS"],
+    icon: ChefHat,
+  },
+  {
+    id: "shifts",
+    name: "Shifts & Cash",
+    tagline: "Every rupee accounted for",
+    description: "Open and close shifts with counted cash, see the variance, and run separate registers per branch.",
+    features: ["Opening & closing cash", "Cash variance", "Registers per branch"],
+    icon: IndianRupee,
   },
   {
     id: "crm",
-    name: "CRM & Loyalty",
+    name: "Customers & CRM",
     tagline: "Know every customer",
-    description:
-      "Unified customer profiles, purchase history and loyalty programs that bring people back.",
-    features: ["Customer profiles", "Loyalty programs", "Purchase history", "Targeted campaigns"],
+    description: "B2C and B2B customers with GSTIN, a deals pipeline and follow-ups so no enquiry goes cold.",
+    features: ["Customer master", "Deals pipeline", "Follow-up activities"],
+    icon: Contact,
+  },
+  {
+    id: "hr",
+    name: "HR & Payroll",
+    tagline: "Your team, sorted",
+    description: "Departments, attendance, leave approvals and payroll runs that produce payslips.",
+    features: ["Attendance", "Leave approvals", "Payslips"],
     icon: Users,
-    accent: "var(--color-brand-bright)",
   },
   {
-    id: "reports",
-    name: "Reports & Analytics",
-    tagline: "Decisions, not guesswork",
-    description:
-      "Revenue, sales and outlet-comparison reports that update the moment a bill is closed.",
-    features: ["Revenue reports", "Sales analytics", "Outlet comparisons", "Custom dashboards"],
-    icon: BarChart3,
-    accent: "var(--color-amber)",
+    id: "appointments",
+    name: "Salon & Appointments",
+    tagline: "Bookings that bill themselves",
+    description: "Services with duration and price, staff, appointments from booking to check-in, and payment at the end.",
+    features: ["Services & staff", "Book, check in, complete", "Appointment payments"],
+    icon: Scissors,
   },
   {
-    id: "financials",
-    name: "Financials",
-    tagline: "Your numbers, clarified",
-    description:
-      "Cash-flow visibility and profitability insights so you always know where the business stands.",
-    features: ["Cash-flow visibility", "Profitability insights", "Expense tracking", "Ledger exports"],
-    icon: Wallet,
-    accent: "var(--color-emerald)",
-  },
-  {
-    id: "team",
-    name: "Team & Roles",
+    id: "roles",
+    name: "Branches & Roles",
     tagline: "Right access, every seat",
     description:
-      "Granular roles, shift management and permission controls across your whole organisation.",
-    features: ["Role-based access", "Shift management", "Activity attribution", "Multi-outlet staff"],
+      "Run several branches from one account, with seven ready-made roles from Owner to Cashier and custom roles of your own.",
+    features: ["Multi-branch", "Owner, Manager, Cashier and more", "Custom roles", "Team invites"],
     icon: ShieldCheck,
-    accent: "var(--color-sky)",
   },
-  {
-    id: "audit",
-    name: "Audit & Settings",
-    tagline: "Trust, but verify",
-    description:
-      "Immutable audit logs and centralised settings that keep multi-outlet operations accountable.",
-    features: ["Immutable audit logs", "Centralised settings", "Compliance exports", "Change history"],
-    icon: Settings2,
-    accent: "var(--color-violet)",
-  },
-];
-
-// Subset used in the central ecosystem map (10 nodes)
-export const ecosystemNodes = modules.map((m) => ({
-  id: m.id,
-  name: m.name,
-  icon: m.icon,
-  accent: m.accent,
-  blurb: m.tagline,
-}));
-
-export type Service = {
-  id: string;
-  name: string;
-  tagline: string;
-  description: string;
-  features: string[];
-  icon: LucideIcon;
-  accent: string;
-};
-
-export const services: Service[] = [
-  {
-    id: "erp",
-    name: "ERP System",
-    tagline: "Run the whole business from one system",
-    description:
-      "A complete ERP that connects sales, inventory, purchasing, HR, accounting and reporting — configured to the way your business actually works.",
-    features: ["Sales & purchase", "Inventory & warehouses", "Accounting & GST", "HR & payroll", "Approvals & workflows", "Multi-branch reporting"],
-    icon: Layers,
-    accent: "var(--color-violet)",
-  },
-  {
-    id: "billing",
-    name: "Billing System",
-    tagline: "GST-ready invoicing in seconds",
-    description:
-      "Fast, compliant billing for counters, service businesses and B2B — invoices, quotations, payments and receivables in one place.",
-    features: ["GST invoices & e-way bills", "Quotations & credit notes", "UPI, card & cash payments", "Recurring billing", "Payment reminders", "Receivables tracking"],
-    icon: Receipt,
-    accent: "var(--color-brand)",
-  },
-  {
-    id: "websites",
-    name: "Website Development",
-    tagline: "Websites that win customers",
-    description:
-      "We design and build fast, SEO-ready websites, e-commerce stores and web portals for businesses of every size.",
-    features: ["Business & landing sites", "E-commerce stores", "Custom web portals", "SEO & performance", "CMS for easy updates", "Hosting & maintenance"],
-    icon: Globe,
-    accent: "var(--color-sky)",
-  },
-  {
-    id: "apps",
-    name: "Mobile App Development",
-    tagline: "Your business, in their pocket",
-    description:
-      "Native-quality Android and iOS apps — customer apps, ordering apps and internal staff tools — built, launched and supported by our team.",
-    features: ["Android & iOS apps", "Ordering & booking apps", "Staff & field apps", "Payments & notifications", "Play Store & App Store launch", "Ongoing support"],
-    icon: Smartphone,
-    accent: "var(--color-emerald)",
-  },
-];
-
-export const deliverySteps: { title: string; description: string }[] = [
-  { title: "Discover", description: "We map your workflows, goals and existing tools in a free consultation." },
-  { title: "Design", description: "Clickable designs and a clear scope, timeline and fixed quote before we build." },
-  { title: "Build", description: "Weekly demos so you see progress and shape the product as it comes together." },
-  { title: "Launch & support", description: "Go-live, data migration, training and ongoing maintenance after launch." },
-];
-
-export type Stat = { value: number; suffix: string; label: string; prefix?: string };
-
-export const stats: Stat[] = [
-  { value: 3, suffix: "x", label: "Faster billing at peak hours" },
-  { value: 23, suffix: "%", label: "Reduction in inventory loss" },
-  { value: 99.98, suffix: "%", label: "Platform uptime, multi-region" },
-  { value: 18, suffix: "%", label: "Average lift in profitability" },
 ];
 
 export type Industry = {
@@ -221,165 +160,288 @@ export type Industry = {
   points: string[];
 };
 
-export const industries: Industry[] = [
+export const billingIndustries: Industry[] = [
   {
     id: "restaurants",
-    name: "Restaurants",
-    icon: ChefHat,
-    headline: "From the table to the kitchen, in sync",
-    description:
-      "Fine-dining to QSR — billing, KDS and inventory working as one so service never waits on software.",
-    points: ["Table & course management", "Live kitchen display", "Recipe-level stock control"],
-  },
-  {
-    id: "cafes",
-    name: "Cafés",
+    name: "Restaurants & Cafés",
     icon: Coffee,
-    headline: "Quick service, repeat customers",
-    description:
-      "Fast counter billing with loyalty built in, so the morning rush moves and regulars keep coming back.",
-    points: ["One-tap reorders", "Loyalty & rewards", "Modifier-rich menus"],
+    headline: "From the table to the kitchen, in sync",
+    description: "Tables, KOTs and a live kitchen display that settle straight into billing, stock and the books.",
+    points: ["Tables & sections", "Kitchen display", "Shift cash control"],
   },
   {
     id: "retail",
     name: "Retail Stores",
     icon: ShoppingBag,
     headline: "Barcode to balance sheet",
-    description:
-      "Retail POS with real inventory depth — batch tracking, low-stock alerts and clean financial reporting.",
-    points: ["Barcode & SKU billing", "Batch & expiry tracking", "Multi-store stock transfers"],
+    description: "Scan, bill and restock with live stock balances and purchasing that flows from vendor to shelf.",
+    points: ["Barcode billing", "Purchase orders & GRN", "Live stock"],
   },
   {
-    id: "cloud-kitchens",
-    name: "Cloud Kitchens",
-    icon: Bike,
-    headline: "Every brand, every channel, one screen",
-    description:
-      "Aggregate orders across delivery platforms and run multiple virtual brands from a single kitchen.",
-    points: ["Multi-brand orders", "Aggregator-ready KDS", "Delivery-first workflows"],
+    id: "pharmacy",
+    name: "Pharmacy & FMCG",
+    icon: Pill,
+    headline: "Batches, expiry and nothing wasted",
+    description: "Batch and MRP tracking with near-expiry alerts and first-expired-first-out dispensing at the counter.",
+    points: ["Batch & MRP", "Expiry alerts", "FEFO dispensing"],
   },
   {
-    id: "franchises",
-    name: "Franchises",
-    icon: Building2,
-    headline: "Consistency across every location",
-    description:
-      "Standardise menus, pricing and reporting across franchisees while keeping each outlet accountable.",
-    points: ["Central menu control", "Royalty & revenue reporting", "Per-outlet permissions"],
+    id: "salons",
+    name: "Salons & Spas",
+    icon: Scissors,
+    headline: "Appointments that bill themselves",
+    description: "Book services against staff, check clients in and take payment when the appointment is done.",
+    points: ["Services & staff", "Appointments", "Payments"],
   },
   {
-    id: "multi-location",
-    name: "Multi-Location",
+    id: "wholesale",
+    name: "Wholesale & Distribution",
+    icon: Truck,
+    headline: "B2B invoicing without spreadsheets",
+    description: "GST invoices for business customers, partial payments, recurring billing and vendor management.",
+    points: ["B2B GST invoices", "Recurring invoices", "Receivables"],
+  },
+  {
+    id: "multi-branch",
+    name: "Multi-Branch",
     icon: Network,
-    headline: "One operating system, many outlets",
-    description:
-      "Roll up performance across every site and drill into any single outlet without switching tools.",
-    points: ["Group-wide dashboards", "Cross-outlet comparisons", "Centralised purchasing"],
+    headline: "One account, every branch",
+    description: "Branch-wise registers and warehouses, with roles that keep each team to its own counter.",
+    points: ["Branch registers", "Warehouse-scoped stock", "Role-based access"],
   },
 ];
 
-export type Testimonial = {
-  quote: string;
-  name: string;
-  role: string;
-  company: string;
-  metric: string;
-  metricLabel: string;
-};
+/* ---------------- Education ERP ---------------- */
 
-export const testimonials: Testimonial[] = [
+export const erpUrl = "https://erp.seven14tech.com";
+
+export const erpAreas: Module[] = [
   {
-    quote:
-      "We moved six outlets onto Seven14 in a weekend. Billing that used to take 40 seconds now takes ten, and we finally trust our inventory numbers.",
-    name: "Aarav Mehta",
-    role: "Operations Director",
-    company: "Spice Route Hospitality",
-    metric: "3.1x",
-    metricLabel: "faster checkout",
+    id: "admissions",
+    name: "Admissions",
+    tagline: "Enquiry to enrolment",
+    description: "A leads CRM with source tracking, bulk import, a website enquiry API, online admission forms and a funnel report.",
+    features: ["Enquiry CRM", "Bulk lead import", "Online admission form", "Admission funnel"],
+    icon: UserRound,
   },
   {
-    quote:
-      "The kitchen display alone paid for the platform. Tickets stopped getting lost and our average prep time dropped noticeably within the first month.",
-    name: "Neha Kapoor",
-    role: "Founder",
-    company: "Brew & Co. Cafés",
-    metric: "27%",
-    metricLabel: "faster prep times",
+    id: "students",
+    name: "Students",
+    tagline: "A 360° view of every learner",
+    description: "Student profiles with guardians, documents and ID cards, through promotion, transfer and graduation.",
+    features: ["Student 360", "Guardians & documents", "ID cards", "Promote, transfer, graduate"],
+    icon: GraduationCap,
   },
   {
-    quote:
-      "Running 22 retail stores used to mean 22 spreadsheets. Now it's one dashboard. Stock shrinkage is down and month-end close is effortless.",
-    name: "Vikram Shah",
-    role: "CEO",
-    company: "Urban Mart Retail",
-    metric: "24%",
-    metricLabel: "less stock loss",
+    id: "academics",
+    name: "Academics",
+    tagline: "Timetables to report cards",
+    description: "Courses and batches, timetables, attendance with class-code self check-in, exams, report cards and assignments.",
+    features: ["Courses & batches", "Timetable", "Attendance", "Exams & report cards"],
+    icon: BookOpen,
   },
   {
-    quote:
-      "As a cloud-kitchen group with eight brands, aggregating orders was chaos. Seven14 put every channel on one screen. Game changer.",
-    name: "Riya Desai",
-    role: "Co-founder",
-    company: "Ghost Kitchen Collective",
-    metric: "8",
-    metricLabel: "brands, one screen",
+    id: "fees",
+    name: "Fees & Finance",
+    tagline: "Fees collected, not chased",
+    description: "Fee structures, instalments, scholarships, late fees, refunds, printable receipts and Razorpay payment links.",
+    features: ["Instalments", "Scholarships & late fees", "Online payment links", "Finance reports"],
+    icon: IndianRupee,
   },
+  {
+    id: "people",
+    name: "Staff & Payroll",
+    tagline: "Faculty and staff, in one place",
+    description: "Staff and faculty profiles, leave, discipline and payroll with sensitive fields encrypted.",
+    features: ["Faculty profiles", "Leave", "Encrypted payroll"],
+    icon: Users,
+  },
+  {
+    id: "career",
+    name: "Placements",
+    tagline: "Beyond the classroom",
+    description: "OJT and internships, placements with a summary report, and an alumni portal with an opt-in directory.",
+    features: ["OJT & internships", "Placements", "Alumni portal"],
+    icon: Briefcase,
+  },
+  {
+    id: "operations",
+    name: "Operations",
+    tagline: "The admin office, automated",
+    description: "Tasks, automation rules, messaging, announcements, a help desk, a calendar and an AI assistant.",
+    features: ["Automation rules", "Announcements", "Help desk", "AI assistant"],
+    icon: Workflow,
+  },
+  {
+    id: "resources",
+    name: "Resources",
+    tagline: "Library to transport",
+    description: "Library, certificates with custom templates, asset tracking and transport.",
+    features: ["Library", "Certificates", "Assets", "Transport"],
+    icon: Library,
+  },
+  {
+    id: "portal",
+    name: "Student & Parent Portal",
+    tagline: "Families, kept in the loop",
+    description: "Attendance, timetable, assignments, results and fees with online payment and receipts, on web and Android.",
+    features: ["Results & attendance", "Pay fees online", "Feedback", "Android app"],
+    icon: MonitorSmartphone,
+  },
+];
+
+export const erpAudiences: Industry[] = [
+  {
+    id: "schools",
+    name: "Schools",
+    icon: School,
+    headline: "Admissions to report cards, one system",
+    description: "Run admissions, attendance, exams and fees, and give parents a portal they will actually open.",
+    points: ["Parent portal", "Report cards", "Fee instalments"],
+  },
+  {
+    id: "colleges",
+    name: "Colleges",
+    icon: Landmark,
+    headline: "Batches, placements and alumni",
+    description: "Courses and intakes with year-end rollover, placements, and an alumni portal that keeps graduates close.",
+    points: ["Year-end rollover", "Placements", "Alumni directory"],
+  },
+  {
+    id: "coaching",
+    name: "Coaching Institutes",
+    icon: BookOpen,
+    headline: "Every enquiry followed up",
+    description: "An admissions CRM with source tracking and a website enquiry API, so no lead goes cold.",
+    points: ["Lead CRM", "Question bank", "Online payment links"],
+  },
+  {
+    id: "vocational",
+    name: "Vocational & Training",
+    icon: Wrench,
+    headline: "Classroom to OJT to job",
+    description: "Track on-the-job training and internships with check-ins, then placements and certificates.",
+    points: ["OJT check-in", "Certificates", "Placements"],
+  },
+  {
+    id: "groups",
+    name: "Multi-Centre Groups",
+    icon: Building2,
+    headline: "Many centres, one institute",
+    description: "Every request is scoped to the organisation and centre, so each campus sees only its own data.",
+    points: ["Centre-level access", "Group reports", "Shared catalogue"],
+  },
+];
+
+/* ---------------- Custom software services ---------------- */
+
+export const services: Module[] = [
+  {
+    id: "websites",
+    name: "Website Development",
+    tagline: "Websites that win customers",
+    description: "Fast, SEO-ready business websites, e-commerce stores and web portals, with a CMS so your team can update them.",
+    features: ["Business & landing sites", "E-commerce stores", "Web portals", "SEO & performance", "CMS"],
+    icon: Globe,
+  },
+  {
+    id: "apps",
+    name: "Mobile App Development",
+    tagline: "Your business, in their pocket",
+    description: "Android and iOS apps for customers, ordering, bookings and field staff, launched on the Play Store and App Store.",
+    features: ["Android & iOS", "Ordering & booking apps", "Staff & field apps", "Store launch"],
+    icon: Smartphone,
+  },
+  {
+    id: "custom",
+    name: "Custom Software",
+    tagline: "Built around your process",
+    description: "Internal tools, dashboards, customer portals and integrations, designed around how your team already works.",
+    features: ["Internal tools & dashboards", "Customer portals", "API integrations", "Payment gateways"],
+    icon: CodeXml,
+  },
+  {
+    id: "support",
+    name: "Hosting & Support",
+    tagline: "Looked after after launch",
+    description: "Cloud hosting, monitoring, backups and ongoing improvements, so what we build keeps running.",
+    features: ["Cloud hosting", "Backups & monitoring", "Maintenance", "Feature updates"],
+    icon: LifeBuoy,
+  },
+];
+
+export const deliverySteps: { title: string; description: string }[] = [
+  { title: "Discover", description: "We map your workflows, goals and existing tools in a free consultation." },
+  { title: "Design", description: "Clickable designs and a clear scope, timeline and fixed quote before we build." },
+  { title: "Build", description: "Weekly demos so you see progress and shape the product as it comes together." },
+  { title: "Launch & support", description: "Go-live, data migration, training and ongoing maintenance after launch." },
+];
+
+/* ---------------- Shared ---------------- */
+
+/** Plain facts about the products, shown in mono. */
+export const facts: { value: string; label: string }[] = [
+  { value: "11", label: "Billing modules, from POS to payroll" },
+  { value: "9", label: "Education ERP areas, admissions to alumni" },
+  { value: "7", label: "Ready-made staff roles, plus custom roles" },
+  { value: "3", label: "Ways to use it: Windows, Android and web" },
+];
+
+/** Who we build for, shown as monochrome chips under the hero. */
+export const audiences: string[] = [
+  "Restaurants",
+  "Cafés",
+  "Retail stores",
+  "Pharmacies",
+  "Salons",
+  "Distributors",
+  "Schools",
+  "Colleges",
+  "Coaching institutes",
+  "Training centres",
 ];
 
 export type Faq = { q: string; a: string };
 
 export const faqs: Faq[] = [
   {
-    q: "What is Seven14 Tech Studio?",
-    a: "Seven14 Tech Studio is an all-in-one cloud business operating system that combines billing, POS, kitchen display, inventory, purchasing, CRM, reports and financials into a single platform built for restaurants, retail and multi-outlet businesses.",
+    q: "What does Seven14 Tech Studio sell?",
+    a: "Three things: the Seven14 Billing System for shops, restaurants and other businesses; the Seven14 Education ERP for schools, colleges and institutes; and custom software services, where we build websites, mobile apps and bespoke systems for clients.",
   },
   {
-    q: "Does the billing software support GST and Indian tax compliance?",
-    a: "Yes. The billing engine has built-in GST support, configurable tax slabs, HSN/SAC codes and compliant digital invoices, so every receipt is tax-ready out of the box.",
+    q: "Does the billing system handle GST?",
+    a: "Yes. Products carry HSN codes and tax rates, invoices calculate GST line by line, and the accounting module produces a GST summary by rate alongside your trial balance, profit and loss and balance sheet.",
   },
   {
-    q: "Can I manage multiple outlets from one account?",
-    a: "Absolutely. Seven14 is multi-outlet by design. You can roll up performance across every location, compare outlets, manage centralised purchasing and set per-outlet roles and permissions from a single dashboard.",
+    q: "Which devices does the billing system run on?",
+    a: "It runs as a lightweight Windows desktop app and as an Android app, both connected to the same cloud account, so every counter and every branch sees the same live data.",
   },
   {
-    q: "Does the POS work offline?",
-    a: "Yes. The POS is offline-first. Billing continues seamlessly during internet interruptions and syncs automatically once you're back online, so the counter never stops.",
+    q: "Can I run several branches from one account?",
+    a: "Yes. The billing system is multi-branch, with registers and warehouses per branch and roles that limit each person to what they need.",
   },
   {
-    q: "Which payment methods are supported?",
-    a: "Seven14 supports UPI, cards, cash, wallets and popular payment gateways, with digital receipts delivered over SMS, WhatsApp or email.",
+    q: "Is the Education ERP live?",
+    a: "Yes. The Education ERP runs at erp.seven14tech.com, with a staff app, a student and parent portal and a native Android app, all working on the same live data.",
   },
   {
-    q: "How long does it take to get started?",
-    a: "Most single outlets are live within a day. Larger multi-outlet rollouts are typically completed within a week with guided onboarding and data migration from your existing system.",
+    q: "Can parents pay fees online?",
+    a: "Yes. The ERP supports fee structures, instalments, scholarships and late fees, and parents can pay through Razorpay payment links and download printable receipts from the portal.",
   },
   {
-    q: "Is my business data secure?",
-    a: "Security is foundational. Data is encrypted in transit and at rest, access is controlled with granular role-based permissions, and every change is captured in immutable audit logs across all outlets.",
+    q: "Is our data secure?",
+    a: "Access is checked on the server for every request: users only see their own organisation, branch or centre, and only what their role allows. In the ERP, sensitive payroll fields are encrypted.",
   },
   {
-    q: "Do you offer a full ERP system?",
-    a: "Yes. Our ERP connects sales, billing, inventory, purchasing, accounting, HR and reporting in one system, and we configure it around your business processes rather than forcing you into a template.",
+    q: "Can you customise the billing system or ERP for us?",
+    a: "Yes. Because we build both products ourselves, our services team can add the workflows, reports and integrations your business needs.",
   },
   {
-    q: "Do you build websites and mobile apps for other businesses?",
-    a: "Yes. Alongside our own platform, our team designs and builds custom websites, e-commerce stores, web portals and Android/iOS apps for clients — from scoping and design through launch and ongoing support.",
+    q: "Do you build websites and apps for other businesses?",
+    a: "Yes. We design and build business websites, e-commerce stores, web portals, Android and iOS apps and internal tools, from scoping and design through launch and ongoing support.",
   },
   {
-    q: "Can Seven14 integrate with my existing tools?",
-    a: "Yes. Seven14 offers an open API and ready integrations for accounting, delivery aggregators and payment providers, so Seven14 fits into the stack you already run.",
+    q: "How do we get started?",
+    a: "Book a 30-minute demo. We will walk through the product on your own setup, answer your questions and give you an honest plan and quote.",
   },
-];
-
-export const trustedLogos: string[] = [
-  "Spice Route",
-  "Brew & Co.",
-  "Urban Mart",
-  "Ghost Kitchen",
-  "Tandoor House",
-  "FreshLeaf",
-  "Metro Bites",
-  "Cafe Nordic",
-  "PrimeRetail",
-  "Saffron Group",
 ];

@@ -1,19 +1,18 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/sections/PageHero";
-import { Services } from "@/components/sections/Services";
+import { Registry } from "@/components/sections/Registry";
+import { Process } from "@/components/sections/Process";
 import { FinalCta } from "@/components/sections/FinalCta";
-import { Section } from "@/components/ui/Section";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Reveal } from "@/components/ui/Reveal";
+import { Head } from "@/components/ui/Head";
 import { Button } from "@/components/ui/Button";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
-import { deliverySteps } from "@/lib/content";
+import { services } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Services — ERP, Billing Software, Website & App Development",
+  title: "Services — Website, App & Custom Software Development",
   description:
-    "Seven14 builds custom ERP systems, GST billing software, business websites, e-commerce stores and Android/iOS apps — designed, launched and supported by our team.",
+    "Seven14 builds business websites, e-commerce stores, Android and iOS apps, portals and custom software, and customises our billing system and education ERP for your workflows.",
   alternates: { canonical: "/services" },
 };
 
@@ -27,38 +26,71 @@ export default function ServicesPage() {
         ])}
       />
       <PageHero
-        eyebrow="Services"
-        title={<>Software built <span className="text-gradient-brand">around your business</span></>}
-        description="ERP and billing systems, websites and mobile apps — we design, build, launch and support them for businesses of every size."
+        eyebrow="Custom software services"
+        title={
+          <>
+            Software, <em>tailored</em> to how you work.
+          </>
+        }
+        description="Websites, mobile apps, portals and internal tools, plus custom work on our billing system and ERP. We design, build, launch and support them."
       >
-        <div className="flex flex-col items-center gap-3 sm:flex-row">
-          <Button href="/contact" size="lg">Get a free consultation</Button>
-          <Button href="/product" size="lg" variant="secondary">See our platform</Button>
-        </div>
+        <Button href="/contact" arrow>
+          Get a free consultation
+        </Button>
+        <Button href="#process" variant="secondary">
+          How we work
+        </Button>
       </PageHero>
 
-      <Services showCta={false} />
+      <section className="section ruled">
+        <div className="container stack-lg">
+          <Head
+            align="row"
+            eyebrow="What we build"
+            title={
+              <>
+                Four ways we <em>help</em>.
+              </>
+            }
+            lead="Every project is scoped and quoted up front, with weekly demos while we build."
+          />
+          <Registry items={services} labels={["Service", "What it covers", "Includes"]} anchor />
+        </div>
+      </section>
 
-      <Section>
-        <SectionHeading
-          eyebrow="How we work"
-          title={<>From idea to launch, <span className="text-gradient-brand">without surprises</span></>}
-        />
-        <Reveal stagger className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {deliverySteps.map((step, i) => (
-            <div
-              key={step.title}
-              data-reveal-item
-              className="rounded-2xl border border-border bg-surface/60 p-6 ring-hairline"
-            >
-              <span className="font-display text-sm font-semibold text-brand">0{i + 1}</span>
-              <h3 className="mt-3 font-display text-lg font-semibold text-fg">{step.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-fg-muted">{step.description}</p>
+      <section className="section section-alt">
+        <div className="container stack-lg">
+          <Head
+            eyebrow="Why a product team"
+            title={
+              <>
+                We ship our own <em>products</em> too.
+              </>
+            }
+          />
+          <div className="arch reveal">
+            <div>
+              <span className="num">01</span>
+              <h3 className="h3">Proven building blocks</h3>
+              <p className="muted">Billing, payments, roles, reports and portals we already run in production, reused where they fit your project.</p>
             </div>
-          ))}
-        </Reveal>
-      </Section>
+            <div>
+              <span className="num">02</span>
+              <h3 className="h3">Extend what you buy</h3>
+              <p className="muted">Need a workflow the billing system or ERP doesn&apos;t have? We add it, because we wrote both.</p>
+            </div>
+            <div>
+              <span className="num">03</span>
+              <h3 className="h3">One team, after launch</h3>
+              <p className="muted">The people who built it host, monitor and improve it, so support never starts from zero.</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
+      <div id="process">
+        <Process />
+      </div>
       <FinalCta />
     </>
   );
