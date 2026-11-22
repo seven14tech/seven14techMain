@@ -1,0 +1,49 @@
+import { Page, expect } from '@playwright/test';
+import AxeBuilder from '@axe-core/playwright';
+
+export const NASTY = ['', '   ', 'a'.repeat(5000), '<script>alert(1)</script>', 'राम 😀', '-1'];
+
+export async function noA11yErrors(page: Page) {
+  const r = await new AxeBuilder({ page }).analyze();
+  expect(r.violations.filter(v => v.impact === 'critical' || v.impact === 'serious')).toEqual([]);
+}
+
+export async function noConsoleErrors(page: Page) {
+  const errors: string[] = [];
+  page.on('console', m => m.type() === 'error' && errors.push(m.text()));
+  page.on('pageerror', e => errors.push(e.message));
+  return () => expect(errors).toEqual([]);
+}
+
+export async function formSurvivesHumans(page: Page, url: string, submit: string) {
+  for (const v of NASTY) {
+    await page.goto(url);
+    for (const input of await page.locator('input:visible, textarea:visible').all()) await input.fill(v);
+    await page.getByRole('button', { name: submit }).click();
+    await expect(page.locator('body')).not.toContainText(/500|Internal Server Error|undefined|NaN/);
+  }
+}
+
+export async function doubleClickSafe(page: Page, submit: string, apiPath: string) {
+  let calls = 0;
+  page.on('request', r => r.url().includes(apiPath) && r.method() === 'POST' && calls++);
+  await page.getByRole('button', { name: submit }).dblclick();
+  await page.waitForTimeout(1000);
+  expect(calls).toBeLessThanOrEqual(1);
+}
+
+export async function survivesOfflineAndSlow(page: Page, url: string) {
+  await page.goto(url);
+  await page.context().setOffline(true);
+  await page.reload().catch(() => {});
+  await page.context().setOffline(false);
+  await page.route('**/api/**', async r => { await new Promise(s => setTimeout(s, 3000)); await r.continue(); });
+  await page.goto(url);
+  await expect(page.getByRole('progressbar').or(page.getByText(/loading/i))).toBeVisible();
+}
+
+export async function showsServerErrorNicely(page: Page, url: string) {
+  await page.route('**/api/**', r => r.fulfill({ status: 500, body: '{}' }));
+  await page.goto(url);
+  await expect(page.getByRole('alert')).toBeVisible();
+}

@@ -1,0 +1,26 @@
+import { test, expect } from '@playwright/test';
+import * as h from './helpers';
+
+const PAGES = ['/', '/login', '/dashboard'];
+
+for (const url of PAGES) {
+  test(`${url}: a11y, console, slow, offline, 500`, async ({ page }) => {
+    const check = await h.noConsoleErrors(page);
+    await page.goto(url);
+    await h.noA11yErrors(page);
+    await expect(page).toHaveScreenshot({ fullPage: true, maxDiffPixelRatio: 0.01 });
+    await h.showsServerErrorNicely(page, url);
+    check();
+  });
+}
+
+test('login form survives humans', async ({ page }) => {
+  await h.formSurvivesHumans(page, '/login', 'Login');
+});
+
+test('back button after logout shows no data', async ({ page }) => {
+  await page.goto('/dashboard');
+  await page.getByRole('button', { name: 'Logout' }).click();
+  await page.goBack();
+  await expect(page).toHaveURL(/login/);
+});
