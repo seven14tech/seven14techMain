@@ -1,0 +1,22 @@
+import pytest
+
+NASTY = ["", " ", "a" * 10000, "<script>alert(1)</script>", "' OR 1=1 --",
+         "राम 😀", "null", "-1", "0", "99999999999999999999", "\u0000"]
+
+@pytest.mark.parametrize("value", NASTY)
+def test_create_never_500(auth_client, value):
+    r = auth_client().post("/students", json={"name": value, "email": value})
+    assert r.status_code < 500
+
+def test_double_submit_no_duplicate(auth_client):
+    c = auth_client()
+    body = {"name": "A", "email": "a@x.com"}
+    c.post("/students", json=body); c.post("/students", json=body)
+    assert len(c.get("/students").json()) == 1
+
+@pytest.mark.parametrize("role,expected", [("admin", 200), ("teacher", 403), ("student", 403)])
+def test_permissions(auth_client, role, expected):
+    assert auth_client(role).delete("/students/1").status_code in (expected, 404)
+
+def test_no_token_401(client):
+    assert client.get("/students").status_code == 401
